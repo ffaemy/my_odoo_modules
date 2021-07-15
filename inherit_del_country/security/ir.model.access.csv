@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inherit_del_country_inherit_del_country,inherit_del_country.inherit_del_country,model_inherit_del_country_inherit_del_country,,1,0,0,0
