@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+
+    <record id="view_sale_order_line_for_extra_field_cft" model="ir.ui.view">
+        <field name="name">sale.order.extended.for.image</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="string">Units</attribute>
+            </xpath>
+                   <xpath expr="//tree" position="attributes">
+                <attribute name="editable"></attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="tp_unit_ctn_rate" readonly="1" force_save="1"/>
+                <field name="invoice_rate" invisible="0" readonly="1" force_save="1"/>
+                <field name="invoice_rate_per_ctn" invisible="0" readonly="1" force_save="1"/>
+                <field name="dist_margin_unit" invisible="0" readonly="1" force_save="1"/>
+                <field name="dist_margin_ctn" invisible="0" readonly="1" force_save="1"/>
+                <field name="dist_margin" invisible="0" force_save="1"/>
+                <field name="retail_price" invisible="1" force_save="1"/>
+                 <field name="retail_price" invisible="1" readonly="True" force_save="1"/>
+                 <field name="tp_rate_value" invisible="1" force_save="1" readonly="True"/>
+                <field name="dist_margin_12" force_save="1" invisible="1" readonly="True"/>
+                <field name="trade_offer" invisible="1" force_save="1" readonly="True"/>
+                <field name="trade_offer_amount" invisible="1" force_save="1" readonly="True"/>
+                <field name="net_amount" invisible="1" force_save="1" readonly="True"/>
+              </xpath>
+
+
+                 <xpath expr="//form/group/group/field[@name='product_id']" position="after">
+                <field name="ctn" force_save="1"/>
+                <field name="ctn_packing" force_save="1"/>
+                <field name="tp_unit_ctn_rate" force_save="1" readonly="True"/>
+                <field name="invoice_rate" invisible="0" force_save="1" readonly="True"/>
+                <field name="invoice_rate_per_ctn" invisible="0" force_save="1" readonly="True"/>
+                <field name="dist_margin_unit" invisible="0" force_save="1" readonly="True"/>
+                <field name="dist_margin_ctn" invisible="0" force_save="1" readonly="True"/>
+                <field name="dist_margin" invisible="0" force_save="1" readonly="True"/>
+                <field name="retail_price" invisible="0" force_save="1" readonly="True"/>
+                 <field name="retail_price_per_ctn" invisible="0" force_save="1" readonly="True"/>
+                 <field name="tp_rate_value" invisible="0" force_save="1" readonly="True"/>
+                <field name="dist_margin_12" invisible="0" readonly="True" force_save="1"/>
+                <field name="trade_offer" force_save="1" readonly="True"/>
+                 <field name="trade_offer_percent" invisible="0" force_save="1" readonly="True"/>
+                <field name="trade_offer_amount" readonly="1" force_save="1"/>
+                <field name="net_amount" invisible="1" force_save="1" readonly="True"/>
+            </xpath>
+
+         <xpath expr="//field[@name='order_line']/tree/field[@name='name']"  position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+
+       <xpath expr="//field[@name='order_line']/form//field[@name='invoice_lines']"  position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+                 <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']"  position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+                 <xpath expr="//field[@name='order_line']/form//field[@name='name']"  position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+                 <xpath expr="//field[@name='order_line']/form//field[@name='discount']"  position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+                 <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']"  position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="product_brand_form_view_list_create">
+        <field name="name">Create Offers</field>
+        <field name="model">create.offers</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+
+
+
+                            <field name="name"/>
+                            <field name="value"/>
+
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="ninox_appointment_tree_view_create" model="ir.ui.view">
+        <field name="name">Create Offers</field>
+        <field name="model">create.offers</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="value"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="create_offers_action_window">
+        <field name="name">Create Offers</field>
+        <field name="res_model">create.offers</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Create Offers" id="training_training_menu_create_offer"    parent="sale.sale_menu_root" action="create_offers_action_window"/>
+</odoo>

@@ -1,0 +1,1067 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+    <data>
+
+    <record id="view_invoice_line_for_extra_field_cft" model="ir.ui.view">
+        <field name="name">account.move.extended.for.image</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//tree" position="attributes">
+                <attribute name="editable"></attribute>
+            </xpath>
+                   <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
+              <field name="ctn" force_save="1" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="ctn_packing" force_save="1" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="tp_unit_ctn_rate" readonly="1" force_save="1" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="invoice_rate" invisible="1" readonly="1" force_save="1" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="invoice_rate_per_ctn" invisible="1" readonly="1" force_save="1" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin_unit" invisible="1" readonly="1" force_save="1" attrs="{'column_invisible': [ ('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin_ctn" invisible="1" readonly="1" force_save="1" attrs="{'column_invisible': [ ('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin" invisible="1" force_save="1" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="retail_price" invisible="1" force_save="1" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                 <field name="retail_price_per_ctn" invisible="1" readonly="True" force_save="1" attrs="{'column_invisible': [ ('parent.type', '!=', 'out_invoice')]}"/>
+                 <field name="tp_rate_value" invisible="1" force_save="1" readonly="True" attrs="{'column_invisible': [ ('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin_12" force_save="1" invisible="1" readonly="True" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="trade_offer" invisible="1" force_save="1" readonly="True" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="trade_offer_amount" invisible="1" force_save="1" readonly="True" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="net_amount" invisible="1" force_save="1" readonly="True" attrs="{'column_invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+              </xpath>
+
+                   <xpath expr="//notebook//field[@name='line_ids']/tree/field[@name='price_unit']" position="after">
+                        <field name="ctn" force_save="1" invisible="1" />
+                <field name="ctn_packing" force_save="1" invisible="1" />
+                <field name="tp_unit_ctn_rate" invisible="1" force_save="1" readonly="True" />
+                <field name="invoice_rate" invisible="1" readonly="1" force_save="1" />
+                <field name="invoice_rate_per_ctn" invisible="1" readonly="1" force_save="1" />
+                <field name="dist_margin_unit" invisible="1" readonly="1" force_save="1" />
+                <field name="dist_margin_ctn" invisible="1" readonly="1" force_save="1"/>
+                <field name="dist_margin" invisible="1"  force_save="1" readonly="True"/>
+                <field name="retail_price" invisible="1" force_save="1" readonly="True" />
+                 <field name="retail_price" invisible="1" force_save="1" readonly="True" />
+                 <field name="tp_rate_value" invisible="1" force_save="1" readonly="True" />
+                <field name="dist_margin_12" invisible="1" readonly="True" force_save="1" />
+                <field name="trade_offer" invisible="1" force_save="1" readonly="True" />
+                <field name="trade_offer_amount" invisible="1" readonly="1" force_save="1" />
+                <field name="net_amount" invisible="1" force_save="1" readonly="True" />
+              </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="attributes">
+                <attribute name="string">Units</attribute>
+            </xpath>
+
+            <xpath expr="//form/sheet/group/field[@name='discount']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="string">Net Amount</attribute>
+            </xpath>
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="disbatched_by"/>
+            </xpath>
+
+            <xpath expr="//form/sheet/group/field[@name='product_id']" position="after">
+                <field name="ctn" force_save="1" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="ctn_packing" force_save="1" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="tp_unit_ctn_rate" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="invoice_rate" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="invoice_rate_per_ctn" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin_unit" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin_ctn" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="retail_price" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                 <field name="retail_price_per_ctn" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                 <field name="tp_rate_value" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="dist_margin_12" invisible="0" readonly="True" force_save="1" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="trade_offer" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                 <field name="trade_offer_percent" invisible="0" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="trade_offer_amount" readonly="1" force_save="1" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+                <field name="net_amount" invisible="1" force_save="1" readonly="True" attrs="{'invisible': [('parent.type', '!=', 'out_invoice')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_total' ]" position="attributes">
+                <attribute name="string">Current Invoice</attribute>
+            </xpath>
+
+            <field name="amount_total" position="after">
+                <field name="previous_bal" readonly="True"/>
+                <field name="closing_bal" readonly="True"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="education_history_list">
+        <field name="name">Product Brand</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="education_history_action_window">
+        <field name="name">Product Brand</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="product_brand_form_view_list">
+        <field name="name">Product Brand</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_form_view_sale_order_brand">
+        <field name="name">product.product.sale.order</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']"    position="after">
+                <field name="product_brand"/>
+                <field name="product_packing" />
+                    <field name="trade_offers" />
+                 <field name="retail_price"/>
+            </xpath>
+
+
+            <xpath expr="//field[@name='default_code']" position="attributes">
+                <attribute name="string">SKU</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_form_view_sale_order_brand_template">
+        <field name="name">product.product.sale.order</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']"    position="after">
+                <field name="product_brand" />
+                    <field name="product_packing" />
+                    <field name="trade_offers" />
+                              <field name="retail_price"/>
+            </xpath>
+            <xpath expr="//field[@name='default_code']" position="attributes">
+                <attribute name="string">SKU</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+    <menuitem name="Product Packing" id="training_training_menu"   parent="sale.sale_menu_root" action="education_history_action_window"/>
+
+<!--    <template t-name="account.report_invoice_document">-->
+
+
+<!--          <t t-call="web.external_layout">-->
+<!--            <t t-set="o" t-value="o.with_context(lang=lang)"/>-->
+<!--            &lt;!&ndash;<t t-set="address">&ndash;&gt;-->
+<!--            &lt;!&ndash;    <address t-field="o.partner_id" invisible="1" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;    <div t-if="o.partner_id.vat" class="mt16">&ndash;&gt;-->
+<!--            &lt;!&ndash;        <t t-if="o.company_id.country_id.vat_label" t-esc="o.company_id.country_id.vat_label" id="inv_tax_id_label"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/></div>&ndash;&gt;-->
+<!--            &lt;!&ndash;</t>&ndash;&gt;-->
+
+
+<!--             <div class="row">-->
+<!--                        <div class="col-6" style="font:14px lucida-console,sans-serif !important;">-->
+
+<!--                            <b>Distributor Name:</b> <span t-field="o.partner_id.name"/>-->
+<!--                            <br/>-->
+<!--                            <b>Contact No:</b> <span t-field="o.partner_id.mobile"/>-->
+<!--                            <br/>-->
+<!--                            <b>Area/Town:</b> <span t-field="o.partner_id.city"/>-->
+<!--                            <br/>-->
+<!--                            <b>Sole Name:</b> <span t-field="o.partner_id.name"/>-->
+<!--                            <br/>-->
+<!--                            <b>Address:</b> <span t-field="o.partner_id.street"/>  , <span t-field="o.partner_id.street2"/>-->
+<!--                            <br/>-->
+
+<!--                        </div>-->
+
+<!--                        <div class="col-6 text-right" style="font:13px lucida-console,sans-serif !important;  ">-->
+
+<!--                            <br/>-->
+<!--                            <b>Date:</b> <span t-field="o.invoice_date"/>-->
+<!--                            <br/>-->
+<!--                            <b>Invoice No:</b> <span t-field="o.name"/>-->
+<!--                            <br/>-->
+<!--                            <b>Dispatched by:</b><span t-field="o.disbatched_by.name"/>-->
+<!--                            <br/>-->
+<!--                            <b>Invoiced by:</b><span t-field="o.create_uid.name"/>-->
+<!--                            <br/>-->
+<!--                            <b>Sale Person:</b><span t-field="o.invoice_user_id.name"/>-->
+<!--                            <br/>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <br></br>-->
+<!--            <div class="page">-->
+<!--                <h3 align="center">-->
+<!--                    <span  t-if="o.type == 'out_invoice' and o.state == 'posted'">Distributor Sales Invoice</span>-->
+<!--                    <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Distributor Sales Invoice</span>-->
+<!--                    <span  t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>-->
+<!--                    <span t-if="o.type == 'out_refund'">Credit Note</span>-->
+<!--                    <span  t-if="o.type == 'in_refund'">Vendor Credit Note</span>-->
+<!--                    <span  t-if="o.type == 'out_invoice'">Vendor Bill</span>-->
+<!--                    &lt;!&ndash;<span  t-if="o.name != '/'" t-field="o.name"/>&ndash;&gt;-->
+<!--                </h3>-->
+
+<!--                &lt;!&ndash;<div id="informations" class="row mt32 mb32">&ndash;&gt;-->
+<!--                &lt;!&ndash;    <div class="col-auto mw-100 mb-2" t-if="o.invoice_date" name="invoice_date">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <strong>Invoice Date:</strong>&ndash;&gt;-->
+<!--                &lt;!&ndash;        <p class="m-0" t-field="o.invoice_date"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <div class="col-auto mw-100 mb-2" t-if="o.invoice_date_due and o.type == 'out_invoice' and o.state == 'posted'" name="due_date">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <strong>Due Date:</strong>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <p class="m-0" t-field="o.invoice_date_due"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;    <div class="col-auto mw-100 mb-2" t-if="o.invoice_origin" name="origin">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <strong>Dispatched by:</strong>&ndash;&gt;-->
+<!--                &lt;!&ndash;        <p class="m-0" t-field="o.disbatched_by"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;    <div class="col-auto mw-100 mb-2">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <strong>Invoice By:</strong>&ndash;&gt;-->
+<!--                &lt;!&ndash;        <p class="m-0" t-field="o.create_uid.name"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;    <div class="col-auto mw-100 mb-2">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <strong>Salesperson:</strong>&ndash;&gt;-->
+<!--                &lt;!&ndash;        <p class="m-0" t-field="o.invoice_user_id.name"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </div>&ndash;&gt;-->
+
+
+<!--                &lt;!&ndash;    <div class="col-auto mw-100 mb-2" t-if="o.partner_id.mobile" name="mobile">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <strong>Contact No:</strong>&ndash;&gt;-->
+<!--                &lt;!&ndash;        <p class="m-0" t-field="o.partner_id.mobile"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>-->
+
+<!--                <table class="table table-sm o_main_table" name="invoice_line_table">-->
+<!--                    <thead>-->
+<!--                        <tr style="font-size:13px" >-->
+<!--                            &lt;!&ndash; TODO: remove in master &ndash;&gt;-->
+<!--                            <t t-set="colspan" t-value="6"/>-->
+<!--                            <th name="th_description" class="text-left"><strong>Sr#</strong></th>-->
+
+
+
+
+<!--                            <th name="th_description" class="text-left"><span>Item code</span></th>-->
+<!--                            <th name="th_description" class="text-left" style="width:300px"><span>Product Name</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>SKU</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>Packing</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>Ctn</span></th>-->
+
+<!--                            &lt;!&ndash; TODO: remove in master &ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <th name="th_source" class="d-none text-left" t-if="0"><span>Source Document</span></th>&ndash;&gt;-->
+<!--                            <th name="th_quantity" class="text-right"><span>Units</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>Ctn Packing</span></th>-->
+
+<!--                            <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>T.P Rate Per Unit</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>T.P Rate Per Ctn</span></th>-->
+<!--                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Invoice Rate per unit</span></th>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Invoice Rate per Ctn</span></th>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Dist Margin Per Unit</span></th>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Dist Margin Per Ctn</span></th>&ndash;&gt;-->
+<!--                            <th name="th_description" class="text-left"><span>Dist Margin In %</span></th>-->
+
+<!--                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Retail Price Per Unit</span></th>&ndash;&gt;-->
+<!--                            <th name="th_description" class="text-left"><span>T.P Rate in Value</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>Distributor Margin (12%)</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>Trade Offer</span></th>-->
+<!--                            <th name="th_description" class="text-left"><span>Trade Offer Amount Rs.</span></th>-->
+<!--                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Retail Price Per Ctn</span></th>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            <th name="th_price_unit" t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <span>Disc.%</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash; TODO: remove in master &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                <t t-set="colspan" t-value="colspan+1"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </th>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <th name="th_taxes" t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Taxes</span></th>&ndash;&gt;-->
+<!--                            <th name="th_subtotal" class="text-right">-->
+<!--                                <span groups="account.group_show_line_subtotals_tax_excluded">Net Amount</span>-->
+<!--                                <span groups="account.group_show_line_subtotals_tax_included">Net amount</span>-->
+<!--                            </th>-->
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody class="invoice_tbody">-->
+<!--                        <t t-set="i" t-value="1"/>-->
+<!--                        <t t-set="test_variable" t-value="0"/>-->
+<!--                        <t t-set="a" t-value="0"/>-->
+<!--                        <t t-set="b" t-value="0"/>-->
+<!--                        <t t-set="c" t-value="0"/>-->
+<!--                        <t t-set="d" t-value="0"/>-->
+<!--                        <t t-set="e" t-value="0"/>-->
+<!--                        <t t-set="f" t-value="0"/>-->
+
+<!--                        <t t-set="current_subtotal" t-value="0"/>-->
+<!--                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>-->
+
+<!--                        <t t-foreach="lines" t-as="line">-->
+<!--                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>-->
+<!--                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>-->
+
+<!--                            <tr style="font-size:13px"  t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">-->
+<!--                                <t t-if="not line.display_type" name="account_invoice_line_accountable">-->
+<!--                                    <td>-->
+<!--                                        <span t-esc="i"/>-->
+<!--                                        <t t-set="i" t-value="i + 1"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.product_id.sku"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="account_invoice_line_name">-->
+<!--                                        <span t-field="line.product_id.name"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.product_id.default_code"/>-->
+<!--                                    </td>-->
+
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.product_id.product_brand.name"/>-->
+<!--                                    </td>-->
+
+
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.ctn"/>-->
+<!--                                        <t t-set="a" t-value="a+line.ctn"/>-->
+
+
+<!--                                    </td>-->
+
+<!--                                    <td class="text-right">-->
+<!--                                        <span t-field="line.quantity" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                        <t t-set="test_variable" t-value="test_variable+line.quantity"/>-->
+
+<!--                                    </td>-->
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.ctn_packing" t-options='{"widget": "float", "precision": 0}'/>-->
+<!--                                    </td>-->
+
+
+
+
+<!--                                    <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">-->
+<!--                                        <span class="text-nowrap" t-field="line.price_unit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="brand_name">-->
+<!--&lt;!&ndash;                                        <span t-field="line.tp_unit_ctn_rate"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--                                        <t t-set="z" t-value="line.ctn_packing*line.price_unit"/>-->
+<!--                                         <span t-esc="z" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                    </td>-->
+
+
+
+<!--                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span t-field="line.invoice_rate"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span t-field="line.invoice_rate_per_ctn"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span t-field="line.dist_margin_unit"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span t-field="line.dist_margin_ctn"    t-options='{"widget": "float", "precision": 2}'  />&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                    <td name="brand_name">-->
+<!--                                        <span>12%</span>-->
+<!--                                    </td>-->
+<!--                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span t-field="line.retail_price"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.tp_rate_value" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                        <t t-set="c" t-value="c+line.tp_rate_value"/>-->
+
+<!--                                    </td>-->
+
+<!--                                    <td name="brand_name">-->
+
+<!--                                        <t t-set="g" t-value="line.tp_rate_value*.1072"/>-->
+<!--                                        <t t-set="d" t-value="d+g"/>-->
+<!--                                         <span t-esc="d" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+
+<!--                                    </td>-->
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.trade_offer.name"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="brand_name">-->
+<!--                                        <span t-field="line.trade_offer_amount" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>-->
+<!--                                        <t t-set="e" t-value="e+line.trade_offer_amount"/>-->
+
+<!--                                    </td>-->
+<!--                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span t-field="line.retail_price_per_ctn"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+
+
+
+
+
+<!--                                    &lt;!&ndash;                                    <td t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span class="text-nowrap" t-field="line.discount"/>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <td t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                    <td class="text-right o_price_total">-->
+<!--                                        <span class="text-nowrap" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                        <t t-set="f" t-value="f+line.price_subtotal"/>-->
+<!--                                        <span class="text-nowrap" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                    </td>-->
+<!--                                </t>-->
+<!--                                <t t-if="line.display_type == 'line_section'">-->
+<!--                                    <td colspan="99">-->
+<!--                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>-->
+<!--                                    </td>-->
+<!--                                    <t t-set="current_section" t-value="line"/>-->
+<!--                                    <t t-set="current_subtotal" t-value="0"/>-->
+<!--                                </t>-->
+<!--                                <t t-if="line.display_type == 'line_note'">-->
+<!--                                    <td colspan="99">-->
+<!--                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>-->
+<!--                                    </td>-->
+<!--                                </t>-->
+<!--                            </tr>-->
+
+<!--                            &lt;!&ndash;                            <t t-if="current_section and (line_last or lines[line_index+1].display_type == 'line_section')">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <tr class="is-subtotal text-right">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <td colspan="99">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                        <strong class="mr16">Subtotal</strong>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                        <span t-esc="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </t>&ndash;&gt;-->
+
+<!--                        </t>-->
+
+<!--                    </tbody>-->
+<!--                    <tr style="font-size:13px"><td/><td/><td><strong>Total: </strong></td><td/><td/><td><strong><t t-esc="a" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/> </strong></td><td><strong><t t-esc="test_variable" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/></strong></td><td/><td/><td/><td/><td><strong><t t-esc="c" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/></strong></td><td><strong><t t-esc="d" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/></strong></td><td/><td><strong><t t-esc="e" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/></strong></td><td><strong><t t-esc="f" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/></strong></td></tr>-->
+<!--                </table>-->
+
+<!--                <div class="clearfix">-->
+<!--                    <div id="total" class="row">-->
+<!--                        <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">-->
+<!--                            <table class="table table-sm" style="page-break-inside: avoid;">-->
+<!--                                &lt;!&ndash;                                <tr class="border-black o_subtotal" style="">&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                    <td><strong>Subtotal</strong></td>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                    <td class="text-right">&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                        <span t-field="o.amount_untaxed"/>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">-->
+<!--                                    <tr style="">-->
+<!--                                        <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) == 1 and o.amount_untaxed == amount_by_group[2]">-->
+<!--                                            <td><span class="text-nowrap" t-esc="amount_by_group[0]"/></td>-->
+<!--                                            <td class="text-right o_price_total">-->
+<!--                                                <span class="text-nowrap" t-esc="amount_by_group[3]"/>-->
+<!--                                            </td>-->
+<!--                                        </t>-->
+<!--                                        <t t-else="">-->
+<!--                                            <td>-->
+<!--                                                <span t-esc="amount_by_group[0]"/>-->
+<!--                                                <span class="text-nowrap"> on-->
+<!--                                                    <t t-esc="amount_by_group[4]"/>-->
+<!--                                                </span>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-right o_price_total">-->
+<!--                                                <span class="text-nowrap" t-esc="amount_by_group[3]"/>-->
+<!--                                            </td>-->
+<!--                                        </t>-->
+<!--                                    </tr>-->
+<!--                                </t>-->
+<!--                                <tr class="border-black o_total" style="font-size:13px">-->
+<!--                                    <td><strong>Previous Balance</strong></td>-->
+<!--                                    <td class="text-right">-->
+<!--                                        <span class="text-nowrap" t-field="o.previous_bal" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr style="font-size:13px" class="border-black o_total">-->
+<!--                                    <td><strong>Current Invoice</strong></td>-->
+<!--                                    <td class="text-right">-->
+<!--                                        <span class="text-nowrap" t-field="o.amount_total" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr style="font-size:13px" class="border-black o_total">-->
+<!--                                    <td><strong>Closing Balance</strong></td>-->
+<!--                                    <td class="text-right">-->
+<!--                                        <t t-set="a" t-value="o.previous_bal"/>-->
+<!--                                        <t t-set="b" t-value="o.amount_total"/>-->
+<!--                                        <t t-set="c" t-value="b+a"/>-->
+<!--                                        <t t-esc="c" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;<p t-if="o.type in ('out_invoice', 'in_refund')">&ndash;&gt;-->
+<!--                &lt;!&ndash;    Please use the following communication for your payment : <b><span t-field="o.invoice_payment_ref"/></b>&ndash;&gt;-->
+<!--                &lt;!&ndash;</p>&ndash;&gt;-->
+<!--                &lt;!&ndash;<p t-if="o.narration" name="comment">&ndash;&gt;-->
+<!--                &lt;!&ndash;    <span t-field="o.narration"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;</p>&ndash;&gt;-->
+<!--                &lt;!&ndash;<p t-if="o.invoice_payment_term_id" name="payment_term">&ndash;&gt;-->
+<!--                &lt;!&ndash;    <span t-field="o.invoice_payment_term_id.note"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;</p>&ndash;&gt;-->
+<!--                &lt;!&ndash;<p t-if="o.fiscal_position_id.note" name="note">&ndash;&gt;-->
+<!--                &lt;!&ndash;    <span t-field="o.fiscal_position_id.note"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;</p>&ndash;&gt;-->
+<!--                &lt;!&ndash;<div id="qrcode" t-if="(o.company_id.qr_code) and (o.currency_id.name == 'EUR') and (o.invoice_partner_bank_id.acc_number != False)">&ndash;&gt;-->
+<!--                &lt;!&ndash;    <p t-if="(o.invoice_partner_bank_id.qr_code_valid)">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <strong class="text-center">Scan me with your banking app.</strong><br/><br/>&ndash;&gt;-->
+<!--                &lt;!&ndash;        <img class="border border-dark rounded" t-att-src="o.invoice_partner_bank_id.build_qr_code_url(o.amount_residual,(o.ref) if (o.ref) else o.name)"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </p>&ndash;&gt;-->
+<!--                &lt;!&ndash;    <p t-if="(o.invoice_partner_bank_id.qr_code_valid == False)">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <strong class="text-center">The SEPA QR Code informations are not set correctly.</strong><br/>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </p>&ndash;&gt;-->
+<!--                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </t>-->
+<!--&lt;!&ndash;        <t t-call="web.external_layout">&ndash;&gt;-->
+<!--&lt;!&ndash;            <t t-set="o" t-value="o.with_context(lang=lang)"/>&ndash;&gt;-->
+<!--&lt;!&ndash;               <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-6" style="font:15px lucida-console,sans-serif !important;">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Distributor Name:</b> <span t-field="o.partner_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Contact No:</b> <span t-field="o.partner_id.mobile"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Area/Town:</b> <span t-field="o.partner_id.city"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Sole Name:</b> <span t-field="o.partner_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Address:</b> <span t-field="o.partner_id.street"/>  , <span t-field="o.partner_id.street2"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <div class="col-6 text-right" style="font:15px lucida-console,sans-serif !important;  ">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Date:</b> <span t-field="o.invoice_date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Invoice No:</b> <span t-field="o.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Dispatched by:</b> <span t-field="o.create_uid.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Invoiced by:</b> <span t-field="o.create_uid.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <b>Sale Person:</b> <span t-field="o.invoice_user_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            <t t-set="address">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <address t-field="o.partner_id" invisible="1" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <div t-if="o.partner_id.vat" class="mt16">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <t t-if="o.company_id.country_id.vat_label" t-esc="o.company_id.country_id.vat_label" id="inv_tax_id_label"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/></div>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            </t>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="page">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h2>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="o.type == 'out_invoice' and o.state == 'posted'">Distributor Invoice</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="o.type == 'out_refund'">Credit Note</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="o.type == 'in_refund'">Vendor Credit Note</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="o.type == 'out_invoice'">Vendor Bill</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="o.name != '/'" t-field="o.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </h2>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <div id="informations" class="row mt32 mb32">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-auto mw-100 mb-2" t-if="o.invoice_date" name="invoice_date">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <strong>Invoice Date:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="m-0" t-field="o.invoice_date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash;                    <div class="col-auto mw-100 mb-2" t-if="o.invoice_date_due and o.type == 'out_invoice' and o.state == 'posted'" name="due_date">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash;                        <strong>Due Date:</strong>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash;                        <p class="m-0" t-field="o.invoice_date_due"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash;                    </div>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-auto mw-100 mb-2" t-if="o.invoice_origin" name="origin">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <strong>Dispatched by:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="m-0" t-field="o.disbatched_by"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <div class="col-auto mw-100 mb-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <strong>Invoice By:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="m-0" t-field="o.create_uid.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-auto mw-100 mb-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <strong>Salesperson:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="m-0" t-field="o.invoice_user_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                    <div class="col-auto mw-100 mb-2" t-if="o.partner_id.mobile" name="mobile">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <strong>Contact No:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="m-0" t-field="o.partner_id.mobile"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <table class="table table-sm o_main_table" name="invoice_line_table">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash; TODO: remove in master &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            <t t-set="colspan" t-value="6"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><strong>Sr#</strong></th>&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Item code</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left" style="width:500px"><span>Product Name</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>SKU</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Packing</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Ctn</span></th>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            &lt;!&ndash; TODO: remove in master &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_source" class="d-none text-left" t-if="0"><span>Source Document</span></th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_quantity" class="text-right"><span>Units</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Ctn Packing</span></th>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>T.P Rate Per Unit</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>T.P Rate Per Ctn</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Invoice Rate per unit</span></th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Invoice Rate per Ctn</span></th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Dist Margin Per Unit</span></th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Dist Margin Per Ctn</span></th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Dist Margin In %</span></th>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Retail Price Per Unit</span></th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>T.P Rate in Value</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Distributor Margin (12%)</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Trade Offer</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_description" class="text-left"><span>Trade Offer Amount Rs.</span></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_description" class="text-left"><span>Retail Price Per Ctn</span></th>&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                            <th name="th_price_unit" t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                <span>Disc.%</span>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                &lt;!&ndash; TODO: remove in master &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                <t t-set="colspan" t-value="colspan+1"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            </th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <th name="th_taxes" t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Taxes</span></th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th name="th_subtotal" class="text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <span groups="account.group_show_line_subtotals_tax_excluded">Net Amount</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <span groups="account.group_show_line_subtotals_tax_included">Net amount</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <tbody class="invoice_tbody">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="i" t-value="1"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="test_variable" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="a" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="b" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="c" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="d" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="e" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="f" t-value="0"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <t t-set="current_subtotal" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <t t-foreach="lines" t-as="line">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <t t-if="not line.display_type" name="account_invoice_line_accountable">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-esc="i"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="i" t-value="i + 1"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.product_id.sku" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="account_invoice_line_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.product_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.product_id.default_code" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.product_id.product_brand.name" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.ctn" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="a" t-value="a+line.ctn"/>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    <td class="text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.quantity" t-options='{"widget": "float", "precision": 2}'/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="test_variable" t-value="test_variable+line.quantity"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.ctn_packing" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;                                    <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="text-nowrap" t-field="line.price_unit"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                        <span t-field="line.tp_unit_ctn_rate"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="z" t-value="line.ctn_packing*line.price_unit"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                         <span t-esc="z" t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+
+
+
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span t-field="line.invoice_rate"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span t-field="line.invoice_rate_per_ctn"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span t-field="line.dist_margin_unit"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span t-field="line.dist_margin_ctn"    t-options='{"widget": "float", "precision": 2}'  />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span>12%</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span t-field="line.retail_price"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.tp_rate_value"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="c" t-value="c+line.tp_rate_value"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                        <t t-set="g" t-value="line.tp_rate_value*.1072"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="d" t-value="d+g"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                         <span t-esc="d"   t-options='{"widget": "float", "precision": 2}'  />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.trade_offer.name" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.trade_offer_amount"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="e" t-value="e+line.trade_offer_amount"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td name="brand_name">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span t-field="line.retail_price_per_ctn"    t-options='{"widget": "float", "precision": 2}' />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+
+
+
+
+
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span class="text-nowrap" t-field="line.discount"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    <td t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                        <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td class="text-right o_price_total">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="text-nowrap" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="f" t-value="f+line.price_subtotal"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="text-nowrap" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <t t-if="line.display_type == 'line_section'">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td colspan="99">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <t t-set="current_section" t-value="line"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <t t-set="current_subtotal" t-value="0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <t t-if="line.display_type == 'line_note'">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td colspan="99">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            &lt;!&ndash;                            <t t-if="current_section and (line_last or lines[line_index+1].display_type == 'line_section')">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                                <tr class="is-subtotal text-right">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                                    <td colspan="99">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                                        <strong class="mr16">Subtotal</strong>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                                        <span t-esc="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                                </tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash;                            </t>&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        </t>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <tr><td></td><td></td><td><strong>Total: </strong></td><td></td><td></td><td><strong><t t-esc="a" t-options='{"widget": "float", "precision": 0}'/> </strong></td><td><strong><t t-esc="test_variable" t-options='{"widget": "float", "precision": 0}'/></strong></td><td></td><td></td><td></td><td></td><td><strong><t t-esc="c" t-options='{"widget": "float", "precision": 0}'/></strong></td><td><strong><t t-esc="d" t-options='{"widget": "float", "precision": 0}'/></strong></td><td></td><td><strong><t t-esc="e" t-options='{"widget": "float", "precision": 0}'/></strong></td><td><strong><t t-esc="f" t-options='{"widget": "float", "precision": 0}'/></strong></td></tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                </table>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <div class="clearfix">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div id="total" class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <table class="table table-sm" style="page-break-inside: avoid;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                <tr class="border-black o_subtotal" style="">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                    <td><strong>Subtotal</strong></td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                    <td class="text-right">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                        <span t-field="o.amount_untaxed"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                    </td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                </tr>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <tr style="">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) == 1 and o.amount_untaxed == amount_by_group[2]">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><span class="text-nowrap" t-esc="amount_by_group[0]"/></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td class="text-right o_price_total">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span class="text-nowrap" t-esc="amount_by_group[3]"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-else="">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span t-esc="amount_by_group[0]"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span class="text-nowrap"> on&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <t t-esc="amount_by_group[4]"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td class="text-right o_price_total">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span class="text-nowrap" t-esc="amount_by_group[3]"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <tr class="border-black o_total">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><strong>Previous Balance</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td class="text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="text-nowrap" t-field="o.previous_bal" t-options='{"widget": "float", "precision": 0}' />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <tr class="border-black o_total">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><strong>Current Invoice</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td class="text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="text-nowrap" t-field="o.amount_total" t-options='{"widget": "float", "precision": 0}' />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <tr class="border-black o_total">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><strong>Closing Balance</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td class="text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="a" t-value="o.previous_bal" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="b" t-value="o.amount_total"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-set="c" t-value="b+a"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <t t-esc="c"        t-options='{"widget": "float", "precision": 0}' />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </table>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p t-if="o.type in ('out_invoice', 'in_refund')">&ndash;&gt;-->
+<!--&lt;!&ndash;                    Please use the following communication for your payment : <b><span t-field="o.invoice_payment_ref"/></b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p t-if="o.narration" name="comment">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-field="o.narration"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p t-if="o.invoice_payment_term_id" name="payment_term">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-field="o.invoice_payment_term_id.note"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p t-if="o.fiscal_position_id.note" name="note">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-field="o.fiscal_position_id.note"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div id="qrcode" t-if="(o.company_id.qr_code) and (o.currency_id.name == 'EUR') and (o.invoice_partner_bank_id.acc_number != False)">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p t-if="(o.invoice_partner_bank_id.qr_code_valid)">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <strong class="text-center">Scan me with your banking app.</strong><br/><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <img class="border border-dark rounded" t-att-src="o.invoice_partner_bank_id.build_qr_code_url(o.amount_residual,(o.ref) if (o.ref) else o.name)"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p t-if="(o.invoice_partner_bank_id.qr_code_valid == False)">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <strong class="text-center">The SEPA QR Code informations are not set correctly.</strong><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </t>&ndash;&gt;-->
+<!--    </template>-->
+
+
+
+<!-- <template t-name="stock.report_delivery_document">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-call="web.external_layout">-->
+<!--                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>-->
+<!--                <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>-->
+<!--                <t t-if="partner" name="partner_header">-->
+<!--                    <t t-set="address">-->
+<!--                        <div t-esc="partner" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>-->
+<!--                   </t>-->
+<!--                </t>-->
+
+<!--                <div class="page">-->
+<!--                    <h2>-->
+<!--                        <span t-field="o.name"/>-->
+<!--                    </h2>-->
+<!--                    <div class="row mt32 mb32">-->
+<!--                        <div class="col-auto" name="div_origin">-->
+<!--                            <strong>Driver:</strong>-->
+<!--                            <p t-field="o.owner_id.name"/>-->
+<!--                        </div>-->
+<!--&lt;!&ndash;                              <div t-if="o.origin" class="col-auto" name="div_origin">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <strong>Driver:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p t-field="o.owner_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                              <div class="col-auto" name="div_origin">-->
+<!--                            <strong>Vehicle#</strong>-->
+<!--                            <p t-field="o.owner_id.ref"/>-->
+<!--                        </div>-->
+<!--                                  <div class="col-auto" name="div_origin">-->
+<!--                            <strong>Mobile#</strong>-->
+<!--                            <p t-field="o.owner_id.mobile"/>-->
+<!--                        </div>-->
+
+<!--                           <div class="col-auto" name="div_origin">-->
+<!--                            <strong>Freight Amount</strong>-->
+<!--                            <p t-field="o.freight_amount"/>-->
+<!--                        </div>-->
+<!--                        <div t-if="o.state" class="col-auto" name="div_sched_date">-->
+<!--                            <strong>Shipping Date:</strong>-->
+<!--                            <t t-if="o.state == 'done'">-->
+<!--                                <p t-field="o.date_done" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>-->
+<!--                            </t>-->
+<!--                            <t t-if="o.state != 'done'">-->
+<!--                                <p t-field="o.scheduled_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>-->
+<!--                           </t>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                     <t t-set="i" t-value="1"/>-->
+<!--                     <t t-set="a" t-value="0"/>-->
+<!--                     <t t-set="b" t-value="0"/>-->
+<!--                     <t t-set="c" t-value="0"/>-->
+<!--                    <table class="table table-sm" name="stock_move_table">-->
+<!--                        <thead>-->
+<!--                            <tr>-->
+<!--                                 <th name="th_sm_product"><strong>Sr#</strong></th>-->
+<!--                                 <th name="th_sm_product"><strong>Item Code</strong></th>-->
+<!--                                <th name="th_sm_product"><strong>Product Name</strong></th>-->
+<!--                                <th name="th_sm_product"><strong>SKU</strong></th>-->
+<!--                                <th name="th_sm_product"><strong>Packing</strong></th>-->
+<!--                                 <th name="th_sm_product"><strong>Ctn</strong></th>-->
+<!--                                 <th name="th_sm_product"><strong>Ctn Packing</strong></th>-->
+<!--                                <th name="th_sm_quantity"><strong>Unit</strong></th>-->
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                            <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>-->
+<!--                            <tr t-foreach="lines" t-as="move">-->
+<!--                                <td>-->
+<!--											<span t-esc="i" />-->
+<!--											<t t-set="i" t-value="i + 1" />-->
+<!--										</td>-->
+<!--                                   <td>-->
+<!--                                    <span t-field="move.product_id.sku"/>-->
+<!--                                </td>-->
+
+<!--                                <td>-->
+<!--                                    <span t-field="move.product_id"/>-->
+<!--                                    <p t-if="move.description_picking != move.product_id.description and move.description_picking != move.product_id.name">-->
+<!--                                        <span t-field="move.description_picking"/>-->
+<!--                                    </p>-->
+<!--                                </td>-->
+<!--                                            <td>-->
+<!--                                    <span t-field="move.product_id.default_code"/>-->
+<!--                                </td>-->
+<!--                                 <td>-->
+<!--                                    <span t-field="move.product_id.product_brand.name"/>-->
+<!--                                </td>-->
+<!--                                    <td>-->
+<!--                                    <span t-field="move.ctn"/>-->
+<!--                                          <t t-set="b" t-value="b+move.ctn"/>-->
+<!--                                </td>-->
+<!--                                    <td>-->
+<!--                                    <span t-field="move.ctn_packing"/>-->
+<!--                                            <t t-set="qty_ctn_packing" t-value="c+move.ctn_packing"/>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <span t-field="move.product_uom_qty"/>-->
+<!--                                     <t t-set="a" t-value="a+move.product_uom_qty"/>-->
+<!--                                    <span t-field="move.product_uom"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                                  <tr><td></td><td></td><td>Total Qty: </td><t t-esc="b"/><td></td><t t-esc="c"/><td></td><t t-esc="a"/></tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--&lt;!&ndash;                    <table class="table table-sm mt48" t-if="o.move_line_ids and o.state=='done'" name="stock_move_line_table">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <t t-set="has_serial_number" t-value="o.move_line_ids.mapped('lot_id')"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <th name="th_sml_product"><strong>Product</strong></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <th name="lot_serial" t-if="has_serial_number" groups="stock.group_lot_on_delivery_slip">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    Lot/Serial Number&ndash;&gt;-->
+<!--&lt;!&ndash;                                </th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <th name="th_sml_quantity" class="text-center"><strong>Quantity</strong></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <tr t-foreach="o.move_line_ids" t-as="move_line">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-field="move_line.product_id"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <p t-if="move_line.move_id.description_picking != move_line.product_id.description and move_line.move_id.description_picking != move_line.product_id.name">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span t-field="move_line.move_id.description_picking"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <td t-if="has_serial_number and move_line.lot_name" groups="stock.group_lot_on_delivery_slip">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-field="move_line.lot_name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <td t-elif="has_serial_number" groups="stock.group_lot_on_delivery_slip">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-field="move_line.lot_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <td class="text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-field="move_line.qty_done"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-field="move_line.product_uom_id"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </table>&ndash;&gt;-->
+<!--                    <p>-->
+<!--                        <t t-if="o.backorder_ids and o.backorder_ids.filtered(lambda x: x.state not in ('done', 'cancel'))">-->
+<!--                            All items couldn't be shipped, the remaining ones will be shipped as soon as they become available.-->
+<!--                        </t>-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--         </t>-->
+<!--    </template>-->
+
+    <record id="stock_valuation_layer_picking_inherit" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.picking</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+               <field name="freight_amount" />
+            </xpath>
+        </field>
+    </record>
+    </data>
+</odoo>
