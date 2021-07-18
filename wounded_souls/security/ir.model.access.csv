@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wounded_souls,wounded.souls,model_wounded_souls,,1,1,1,1
+access_wounded_souls1,wounded.souls1,model_wounded_souls1,,1,1,1,1
+access_wounded_souls2,wounded.souls.orderline,model_wounded_souls_orderline,,1,1,1,1

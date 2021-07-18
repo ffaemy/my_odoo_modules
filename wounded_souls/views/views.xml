@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--inherit res.users and add field allowed discount-->
+        <record id="user_id_change" model="ir.ui.view">
+            <field name="name">user.id.change</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Internal">
+                        <group>
+                            <field name="allowed_discount"/>
+
+                        </group>
+                </page>
+
+                </xpath>
+            </field>
+        </record>
+
+
+        <!--inherit sales order and add field-->
+        <record id="sale_order_contact_person_inherit" model="ir.ui.view">
+            <field name="name">sale.order.contact.person.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="contact_person"/>
+                    <!--<field name="inv_paid_status"/>-->
+                    <field name="article_no"/>
+                    <field name="today_date"/>
+                </field>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="article_noo"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <!--Wounded souls first tree-->
+        <record model="ir.ui.view" id="wounded_souls_tree">
+            <field name="name">Wounded Souls Tree View</field>
+            <field name="model">wounded.souls</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name_seq"/>
+                    <field name="order_no"/>
+                    <!--<field name="customer_ref"/>-->
+                    <field name="customer"/>
+                    <field name="status"/>
+                    <field name="total"/>
+                </tree>
+            </field>
+        </record>
+        <!--Wounded Souls First create form-->
+        <record model="ir.ui.view" id="wounded_souls_form">
+            <field name="name">wounded.souls.form</field>
+            <field name="model">wounded.souls</field>
+            <field name="arch" type="xml">
+                <form string="Wounded Souls Stock Form">
+                    <header>
+
+                        <!--<button name="btn_action1" string="Action1" type="object" class="oe_highlight"/>-->
+                        <!--<button name="btn_action2" string="Quantity" type="object" class="oe_highlight"/>-->
+
+                        <button name="btn_step2" string="Step 2" states="step1" type="object" class="oe_highlight"/>
+                        <button name="btn_step3" string="Step 3" states="step2" type="object" class="oe_highlight"/>
+                        <button name="btn_step1" string="Step 1" states="step3" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="step1,step2,step3"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name_seq" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="customer"/>
+                                <field name="address"/>
+                                <field name="status"/>
+                                <field name="description"/>
+                                <field name="qty_sum"/>
+                                <field name="user_id"/>
+                                <field name="allowed_discount"/>
+                                <field name="max_discount"/>
+                            </group>
+                            <group>
+                                <field name="confirmation_date"/>
+                                <field name="order_no"/>
+                                <field name="payment_mode"/>
+                                <field name="del_mode"/>
+                                <field name="customer_ref"/>
+                                <field name="payment_term"/>
+
+
+
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Order_Line" name="sale_order_line">
+                                <field name="order_line">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="item_quantity"/>
+                                        <field name="sell_price"/>
+                                        <field name="discount"/>
+                                        <field name="sub_total"/>
+                                    </tree>
+                                </field>
+                                <div class="float-right o_buttons">
+                                    <button name="%(wounded_souls.wounded_shipping_wizard_action)d"  type="action"
+                                            string="Add Shipping" class="oe_highlight"/>
+
+                                </div>
+                            </page>
+
+                        </notebook>
+
+
+                        <!--Total Class-->
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="total"/>
+                            </div>
+                            <field name="total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget='monetary' />
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--group by and search by-->
+        <record id="wounded_souls_sheet_search" model="ir.ui.view">
+            <field name="name">wounded.souls.sheet.search</field>
+            <field name="model">wounded.souls</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Wounded Souls Search">
+                    <field name="customer" />
+                    <field name="status"/>
+                    <field name="order_no"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="status" name= 'status' domain="[]" context="{'group_by':'status'}"/>
+                        <filter string="customer" name="customer" domain="[]" context="{'group_by':'customer'}"/>
+                        <filter string="order_no" name='order_no' domain="[]" context="{'group_by':'order_no'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!--Venders Form-->
+        <record model="ir.ui.view" id="wounded_souls_form1">
+            <field name="name">wounded.souls.form1</field>
+            <field name="model">wounded.souls1</field>
+            <field name="arch" type="xml">
+                <form string="Wounded Souls Venders">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="seller_ref"/>
+                                <field name="name"/>
+                                <field name="address"/>
+                                <field name="contact"/>
+                                <field name="mobile"/>
+                            </group>
+                            <group>
+                                <field name="email"/>
+                                <field name="title"/>
+                                <field name="origin"/>
+                                <field name="website"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Venders tree-->
+        <record model="ir.ui.view" id="wounded_souls_tree1">
+            <field name="name">Venders Tree</field>
+            <field name="model">wounded.souls1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="mobile"/>
+                    <field name="contact"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--stock menu tree view-->
+        <record model="ir.ui.view" id="wounded_souls_tree2">
+            <field name="name">Stock</field>
+            <field name="model">wounded.souls</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="item_no"/>
+                    <field name="quantity"/>
+                    <field name="sold_quantities"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!--Stock Form View-->
+        <record model="ir.ui.view" id="wounded_souls_form3">
+            <field name="name">wounded.souls.form3</field>
+            <field name="model">wounded.souls</field>
+            <field name="arch" type="xml">
+                <form string="Wounded Souls Stock">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="item_no"/>
+                                <field name="name"/>
+                                <field name="varient"/>
+                                <field name="tags" widget="selection"/>
+                            </group>
+                            <group>
+                                <field name="quantity"/>
+                                <field name="stock_location"/>
+                                <field name="barcode"/>
+                                <field name="website_item_code"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="wounded_souls_search" model="ir.ui.view">
+            <field name="name">wounded.souls.search</field>
+            <field name="model">wounded.souls</field>
+            <field name="arch" type="xml">
+                <search string="Search Bank Statements">
+                    <field name="item_no"/>
+                    <field name="name"/>
+                    <!--<filter string="Draft" name="draft" domain="[('state','=','open')]"/>
+                    <filter string="Confirmed" name="confirmed" domain="[('state','=','confirm')]"/>
+                    <field name="journal_id" domain="[('type', '=', 'bank')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Journal" name="journal" context="{'group_by': 'journal_id'}"/>
+                        <filter string="Status" name="status" context="{'group_by': 'state'}"/>
+                        <filter string="Date" name="date" cowounded_souls_tree2ntext="{'group_by': 'date'}"/>
+                    </group>-->
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="wounded_souls_action_window">
+            <field name="name">Wounded Souls</field>
+            <field name="res_model">wounded.souls</field>
+            <field name="view_mode">tree,form,search</field>
+        </record>
+
+
+        <record id="wounded_souls_action_window_tree_link" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wounded_souls_tree"/>
+            <field name="act_window_id" ref="wounded_souls_action_window"/>
+        </record>
+
+        <record id="wounded_souls_action_window_form_link" model="ir.actions.act_window.view">
+            <field eval="4" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wounded_souls_form"/>
+            <field name="act_window_id" ref="wounded_souls_action_window"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="wounded_souls_action_menu">
+            <field name="name">Venders</field>
+            <field name="res_model">wounded.souls1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wounded_souls_tree1"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="wounded_souls_action_menu2">
+            <field name="name">Stock</field>
+            <field name="res_model">wounded.souls</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+        <record id="wounded_souls_action_menu2_tree_link" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wounded_souls_tree2"/>
+            <field name="act_window_id" ref="wounded_souls_action_menu2"/>
+        </record>
+
+        <record id="wounded_souls_action_menu2_form_link" model="ir.actions.act_window.view">
+            <field eval="4" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wounded_souls_form3"/>
+            <field name="act_window_id" ref="wounded_souls_action_menu2"/>
+        </record>
+
+        <menuitem name="Wounded Souls" id="wounded_souls_menu_root" web_icon="wounded_souls,static/description/icon.png"/>
+
+        <menuitem name="Sale Order" id="wounded_souls_menu" parent="wounded_souls_menu_root"/>
+        <menuitem name="Sale Order" id="wounded_souls.menu_4" parent="wounded_souls_menu"
+                  action="wounded_souls_action_window" sequence="1"/>
+        <menuitem name="Venders" id="wounded_souls.menu_1" parent="wounded_souls_menu"
+                  action="wounded_souls_action_menu" sequence="2"/>
+
+        <menuitem name="Stock" id="wounded_souls_menu_2" parent="wounded_souls_menu_root"/>
+        <menuitem name="Stock1" id="wounded_souls_menu_3" parent="wounded_souls_menu_2"
+                  action="wounded_souls_action_menu2"/>
+
+    </data>
+</odoo>
