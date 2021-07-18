@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="add_shipping_wizard" model="ir.ui.view">
+            <field name="name">sale.shipping.wizard</field>
+            <field name="model">shipping_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Add Shipping Details ">
+                    <group>
+                        <group>
+                            <!--<field name="order_id"/>-->
+                            <!--<field name="product_product"/>-->
+                            <field name="shipping_name"/>
+                            <field name="shipping_value"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Save Shipping" name="update_shipping" type="object" class="btn_primary"/>
+                        <button string="Cancel" class="btn_default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="shipping_wizard_action" model="ir.actions.act_window">
+            <field name="name">Update Shipping Information</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="add_shipping_wizard"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

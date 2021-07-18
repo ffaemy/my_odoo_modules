@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+
+        <record id="saleorder_shipping_wizard" model="ir.ui.view">
+            <field name="name">saleorder.shipping.wizard</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="//notebook" position="inside">-->
+                <xpath expr="//field[@name='amount_untaxed']" position="before">
+                    <div class="float-right o_buttons">
+                        <button name="%(inherit_saleorder_shipping.shipping_wizard_action)d" type="action" string="Add Shipping" class="oe_highlight"/>
+
+                    </div>
+                 </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
