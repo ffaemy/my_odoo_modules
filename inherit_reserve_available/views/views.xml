@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_reserved" model="ir.ui.view">
+        <field name="name">inherit.reserved</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='traceability']/field[@name='tracking']" position="after">
+                <field name="reserved_quantity"/>
+                <field name="available_quantity"/>
+            </xpath>
+
+
+        </field>
+    </record>
+
+    <record id="inherit_price_list" model="ir.ui.view">
+        <field name="name">inherit.price.list</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='group_standard_price']/field[@name='list_price']" position="after">
+                <field name="cash_price"/>
+                <field name="walk_in"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
