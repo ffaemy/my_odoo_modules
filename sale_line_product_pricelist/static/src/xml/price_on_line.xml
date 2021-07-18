@@ -1,0 +1,29 @@
+<templates>
+    <div t-name="sale_line_product_pricelist.priceOnLine">
+        <div t-if="widget.data.product_pricelist_items.length &gt; 1">
+           <a tabindex="0" class="fa fa-info-circle text-primary"/>
+        </div>
+    </div>
+
+    <div t-name="sale_line_product_pricelist.PriceOnLinePopOver">
+        <table t-if="data.product_pricelist_items.length &gt; 1">
+            <tbody>
+                <tr  t-foreach="data.product_pricelist_items.split('|')" t-as="item">
+                    <td><strong><t t-esc="item.split(':')[0]"/></strong></td>
+                    <td><strong>: <t t-esc="item.split(':')[1]"/></strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div t-name="sale_line_product_pricelist.PopoverStockProduct">
+        <table t-if="product_pricelist_items.length &gt; 1">
+            <tbody>
+                <tr  t-foreach="product_pricelist_items.split('|')" t-as="item">
+                    <td><strong><t t-esc="item.split(':')[0]"/></strong></td>
+                    <td><strong>: <t t-esc="item.split(':')[1]"/></strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</templates>

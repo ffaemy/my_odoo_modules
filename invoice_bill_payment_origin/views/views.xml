@@ -1,0 +1,73 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it -->
+    <record id="account_payment_id" model="ir.ui.view">
+        <field name="name"></field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="origin_id"/>
+            </xpath>
+
+        </field>
+    </record>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="invoice_bill_payment_origin.list">
+      <field name="name">invoice_bill_payment_origin list</field>
+      <field name="model">invoice_bill_payment_origin.invoice_bill_payment_origin</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="invoice_bill_payment_origin.action_window">
+      <field name="name">invoice_bill_payment_origin window</field>
+      <field name="res_model">invoice_bill_payment_origin.invoice_bill_payment_origin</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="invoice_bill_payment_origin.action_server">
+      <field name="name">invoice_bill_payment_origin server</field>
+      <field name="model_id" ref="model_invoice_bill_payment_origin_invoice_bill_payment_origin"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="invoice_bill_payment_origin" id="invoice_bill_payment_origin.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="invoice_bill_payment_origin.menu_1" parent="invoice_bill_payment_origin.menu_root"/>
+    <menuitem name="Menu 2" id="invoice_bill_payment_origin.menu_2" parent="invoice_bill_payment_origin.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="invoice_bill_payment_origin.menu_1_list" parent="invoice_bill_payment_origin.menu_1"
+              action="invoice_bill_payment_origin.action_window"/>
+    <menuitem name="Server to list" id="invoice_bill_payment_origin" parent="invoice_bill_payment_origin.menu_2"
+              action="invoice_bill_payment_origin.action_server"/>
+-->
+  </data>
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+
+   <record model="ir.ui.view" id="purchase_order_form_inh">
+            <field name="name">purchase.order.form.inh</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_rfq_send']" position="after">
+                    <button string="Add Taxes" type="object" name="action_open_taxes_wizard" class="oe_highlight"/>
+                </xpath>
+
+            </field>
+        </record>
+
+  </data>
+</odoo>

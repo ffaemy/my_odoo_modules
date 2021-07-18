@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <record id="serial_no_tracking_form_view" model="ir.ui.view">
+            <field name="name">serial_no.tracking.form.view.inh</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_stock_move_operations"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='next_serial']" position="after">
+                    <field name="serial_lot_check" invisible="1"/>
+                </xpath>
+                 
+                 
+                <xpath expr="//field[@name='next_serial']" position="attributes">
+                   <attribute name="attrs">{'readonly': [('serial_lot_check', '=', True)]}</attribute>
+                </xpath>
+                 
+                     
+            
+                <xpath expr="//button[@name='action_assign_serial_show_details']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('serial_lot_check', '=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        
+        <record id="sr_global_tracking_form_view_inherit" model="ir.ui.view">
+            <field name="name">global.tracking.sr.form.view.inh</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='ref']" position="after">
+                      <field name="global_tracking" invisible="1" />
+                      <field name="product_used" />
+                </xpath>
+                
+            </field> 
+        </record>    
+        
+        <record id="sr_global_tracking_list_view_inherit" model="ir.ui.view">
+            <field name="name">global.tracking.sr.list.view.inh</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_tree"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='product_id']" position="after">
+                      <field name="product_used" />
+                </xpath>
+                
+            </field> 
+        </record>    
+        
+        
+        
+        
+        
+        <!-- assign tracking starts button in stock.picking -->
+          <record id="sr_global_tracking_stock_view_inherit" model="ir.ui.view">
+            <field name="name">global.tracking.stock.form.view.inh</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='lot_ids']" position="after">
+                   <!-- <field name="tarcking_starting_no" options="{'no_create': True,'no_open': True}" domain="[('global_tracking','=',True),('product_used','=',False),('product_id','=',product_id)]" /> -->
+                 </xpath>     
+                    
+                    
+                    
+                <!-- <xpath expr="//field[@name='picking_type_id']" position="after">
+                      <field name="tarcking_starting_no"  domain="[('global_tracking','=',True),('product_used','=',False)]" attrs="{'required':[('state','=','assigned')],'invisible':[('so_delivry','=',False)]}"/>
+                       <field name="so_delivry" invisible="1"/>
+                </xpath> -->
+                
+            </field> 
+        </record>    
+         
+        
+        
+    </data>
+</odoo> 

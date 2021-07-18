@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+          <record id="view_assign_tracking_wizard_form" model="ir.ui.view">
+            <field name="name">Select tracking no</field>
+            <field name="model">wizard.assign.tracking</field>
+            <field name="arch" type="xml">
+                <form >
+                    <group>
+                        <field name="starting_tracking_no" domain="[('global_tracking','=',True),('product_used','=',False)]"/>
+                   </group>
+    
+                    <footer>
+                        <!-- <button name="action_assign_tracking" string="Assign Tracking" type="object" class="btn-primary"/> -->
+                        <button  string="Cancel" type="object" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+    
+        </record>
+        
+        <record id="action_assign_tracking_wizard_view" model="ir.actions.act_window">
+            <field name="name">Wizard Assign Tracking</field>
+            <field name="res_model">wizard.assign.tracking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_assign_tracking_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+        
+        
+        
+        
+        
+    
+    </data>
+</odoo>    
+    

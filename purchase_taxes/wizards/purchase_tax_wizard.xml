@@ -1,0 +1,18 @@
+<odoo>
+	<record id="view_purchase_tax_wizard_form" model="ir.ui.view">
+		<field name="name">Purchase Tax wizards</field>
+		<field name="model">purchase.tax.wizard</field>
+		<field name="arch" type="xml">
+			<form >
+				<group>
+					<field name="tax_ids" widget="many2many_tags" required="1"/>
+				</group>
+				<footer>
+					<button name="create_taxes" string="Add Taxes" type="object" class="btn-primary"/>
+					<button  string="Cancel" type="object" class="btn-secondary" special="cancel"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+</odoo>
