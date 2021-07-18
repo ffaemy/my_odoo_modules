@@ -1,0 +1,117 @@
+<odoo>
+
+        <record model="ir.ui.view" id="sale_order_form_inh">
+            <field name="name">sale.order.form.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" icon="fa-dollar"  type="object" name="action_show_payments" >
+                        <field name="payment_count" string="Payments" widget="statinfo"/>
+                    </button>
+                </xpath>
+                 <xpath expr="//field[@name='amount_untaxed']" position="after">
+                     <field name="advance_payment" string="Payments" />
+                     <field name="advance_percent"/>
+                 </xpath>
+            </field>
+        </record>
+
+     <record model="ir.ui.view" id="sale_order_tree">
+            <field name="name">sale.order.form.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+
+                 <xpath expr="//field[@name='state']" position="after">
+                         <field name="advance_payment" optional="hide"/>
+                       <field name="advance_percent" optional="hide"/>
+                     <field name="unpaid_amount" optional="hide"/>
+                   <field name="unpaid_percent" optional="hide"/>
+                 </xpath>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="sale_order_confirm_tree">
+            <field name="name">sale.order.form.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+
+                 <xpath expr="//field[@name='state']" position="after">
+                         <field name="advance_payment" optional="hide"/>
+                       <field name="advance_percent" optional="hide"/>
+                     <field name="unpaid_amount" optional="hide"/>
+                   <field name="unpaid_percent" optional="hide"/>
+                 </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="purchase_order_form_inh">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" icon="fa-dollar"  type="object" name="action_show_payments" >
+                        <field name="payment_count" string="Payments" widget="statinfo"/>
+                    </button>
+                </xpath>
+                 <xpath expr="//field[@name='amount_untaxed']" position="after">
+                     <field name="advance_payment" string="Payments" />
+                     <field name="advance_percent"/>
+                 </xpath>
+            </field>
+        </record>
+
+     <record model="ir.ui.view" id="purchase_order_tree">
+            <field name="name">purchase.order.form.inh</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='state']" position="after">
+                         <field name="advance_payment" optional="hide"/>
+                       <field name="advance_percent" optional="hide"/>
+                     <field name="unpaid_amount" optional="hide"/>
+                   <field name="unpaid_percent" optional="hide"/>
+                 </xpath>
+            </field>
+        </record>
+
+      <record model="ir.ui.view" id="account_move_tree">
+           <field name="name">account.move.form.inh</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account.view_invoice_tree"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='payment_state']" position="after">
+                    <field name="advance_payment" optional="hide"/>
+                       <field name="advance_percent" optional="hide"/>
+                     <field name="unpaid_amount" optional="hide"/>
+                   <field name="unpaid_percent" optional="hide"/>
+               </xpath>
+           </field>
+       </record>
+
+     <record model="ir.ui.view" id="account_payment_form_inh">
+           <field name="name">account.payment.form.inh</field>
+           <field name="model">account.payment</field>
+           <field name="inherit_id" ref="account.view_account_payment_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='journal_id']" position="after">
+                       <field name="origin_no" readonly="1"/>
+               </xpath>
+           </field>
+       </record>
+
+
+     <record model="ir.ui.view" id="account_payment_tree_inh">
+           <field name="name">account.payment.form.inh</field>
+           <field name="model">account.payment</field>
+           <field name="inherit_id" ref="account.view_account_payment_tree"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='state']" position="before">
+                       <field name="origin_no" readonly="1" optional="hide"/>
+               </xpath>
+           </field>
+       </record>
+</odoo>
