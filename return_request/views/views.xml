@@ -1,0 +1,86 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="return_request_list">
+      <field name="name">Return Request Tree View</field>
+      <field name="model">returns.bash</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="contact_person" />
+          <field name="address" />
+          <field name="date"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="return_request_form">
+      <field name="name">Return Request Form View</field>
+      <field name="model">returns.bash</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="action_confirmed" type="object" string="Confirmed" states="user" class="oe_highlight"/>
+            <button name="action_done" type="object" string="Director" states="manager" class="oe_highlight"/>
+            <button name="action_validate" type="object" string="Validate" states="director" class="oe_highlight"/>
+            <field name="state" widget="statusbar" statusbar_visible="user,manager,director,done"/>
+          </header>
+          <sheet>
+
+            <group string="Return Request">
+              <group>
+                <field name="name"/>
+                <field name="contact_person"/>
+                <field name="address"/>
+              </group>
+              <group>
+                <field name="date"/>
+                <field name="user_id"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Return Info">
+                <field name="request_line">
+                  <tree editable="bottom">
+                    <field name="invoice_dte" />
+                    <field name="invoice_no"/>
+                    <field name="item_description"/>
+                    <field name="res_qty"/>
+                    <field name="on_hand"/>
+                    <field name="sold_quantity"/>
+                    <field name="return_quantity" />
+                    <field name="unit_price"/>
+                    <field name="discount_qty"/>
+                    <field name="total" />
+
+
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+
+            <div class="col-12 text-right">
+              <group>
+                <group>
+                  <group>
+                    <field name="net_total" widget="monetary"/>
+                  </group>
+                </group>
+              </group>
+            </div>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="return_request_action_window">
+      <field name="name">Return Request window</field>
+      <field name="res_model">returns.bash</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Return Request" id="return_request_menu_root"  sequence="3"/>
+    <menuitem name="Return Request" id="return_request_menu_1" parent="return_request_menu_root" action="return_request_action_window"/>
+
+  </data>
+</odoo>

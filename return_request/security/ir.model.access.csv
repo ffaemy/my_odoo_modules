@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_returns_bash,returns_bash,model_returns_bash,base.group_user,1,1,1,1
+access_request_line,request_line,model_request_line,base.group_user,1,1,1,1

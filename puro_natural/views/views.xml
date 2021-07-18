@@ -1,0 +1,80 @@
+<odoo>
+  <data>
+    <record id="view_sale_order_line_for_extra_field_cft" model="ir.ui.view">
+      <field name="name">sale.order.extended.for.image</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+          <field name="tp_unit_ctn_rate" readonly="1" force_save="1"/>
+          <field name="invoice_rate" invisible="0" readonly="1" force_save="1"/>
+          <field name="invoice_rate_per_ctn" invisible="0" readonly="1" force_save="1"/>
+          <field name="dist_margin_unit" invisible="0" readonly="1" force_save="1"/>
+          <field name="dist_margin_ctn" invisible="0" readonly="1" force_save="1"/>
+          <field name="dist_margin" invisible="0" force_save="1"/>
+          <field name="retail_price" invisible="1" force_save="1"/>
+          <field name="retail_price" invisible="1" readonly="True" force_save="1"/>
+          <field name="tp_rate_value" invisible="1" force_save="1" readonly="True"/>
+          <field name="dist_margin_12" force_save="1" invisible="1" readonly="True"/>
+          <field name="trade_offer" invisible="1" force_save="1" readonly="True"/>
+          <field name="trade_offer_amount" invisible="1" force_save="1" readonly="True"/>
+          <field name="net_amount" invisible="1" force_save="1" readonly="True"/>
+        </xpath>
+      </field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="puro_natural_form_view_create_offers">
+      <field name="name">Create Offers</field>
+      <field name="model">create.offers</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+                <field name="value"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="puro_natural_tree_view_create" model="ir.ui.view">
+      <field name="name">Create Offers</field>
+      <field name="model">create.offers</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="create_offers_action_window">
+      <field name="name">Create Offers</field>
+      <field name="res_model">create.offers</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Create Offers" id="pure_natural_menu_create_offer" parent="sale.sale_menu_root"
+              action="create_offers_action_window"/>
+
+
+
+
+
+
+
+
+
+  </data>
+</odoo>
+
+
+
+

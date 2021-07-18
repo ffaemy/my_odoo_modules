@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+
+
+  <record id="pure_natural_inv" model="ir.ui.view">
+        <field name="name">pure.natural.inv</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+       <xpath expr="//group[@name='group_standard_price']/field[@name='lst_price']" position="after">
+                <field name="tp_unit_rate"/>
+                <field name="retail_unit"/>
+                <field name="dist_margin_per_unit"/>
+                <field name="dist_margin_per_ctn"/>
+                <field name="dist_margin_perc"/>
+
+
+            </xpath>
+
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="packing"/>
+                <field name="container_pack"/>
+                <field name="tp_rate_cotton"/>
+                <field name="invoice_rate_cotton"/>
+            </xpath>
+
+
+        </field>
+    </record>
+
+    <record id="pure_natural_invoice" model="ir.ui.view">
+        <field name="name">pure.natural.invoice</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+
+
+             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="before">
+                 <field name="ctn"/>
+                 <field name="ctn_packing"/>
+            </xpath>
+             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
+                 <field name="tp_per_cotton"/>
+                 <field name="inv_per_cotton"/>
+                 <field name="retail_price"/>
+                 <field name="tp_rate_unit"/>
+                 <field name="dist_margin_unit"/>
+                 <field name="dist_margin_ctn"/>
+                 <field name="dist_marg_percentage"/>
+                 <field name="tp_rate_value"/>
+                 <field name="dist_marg"/>
+            </xpath>
+
+
+        </field>
+    </record>
+
+
+
+</odoo>
