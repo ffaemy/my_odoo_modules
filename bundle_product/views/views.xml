@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="inherit_bundle_product" model="ir.ui.view">
+        <field name="name">inherit.bundle.product</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_ok']" position="before">
+                <group>
+                    <group>
+                        <field name="product_bundle"/>
+                    </group>
+                </group>
+
+                </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Extra" attrs="{'invisible' : [('product_bundle', '!=', True)]}">
+                    <group>
+                        <group>
+                            <field name="bundle_name"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product Page">
+                            <field name="product_line">
+                                <tree editable="bottom">
+                                    <field name="product_desc"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="discount"/>
+                                    <field name="total"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <div class="col-12 text-right">
+                        <group>
+                            <group>
+                                <group>
+                                    <field name="net_total" widget="monetary"/>
+                                </group>
+                            </group>
+                        </group>
+                    </div>
+
+                </page>
+
+            </xpath>
+        </field>
+    </record>
+
+  <record id="inherit_boolian" model="ir.ui.view">
+        <field name="name">inherit.boolian</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='group_standard_price']/field[@name='list_price']" position="before">
+                <button name="action_compute_bundle" type="object" string="Compute Bundle Price" class="oe_highlight"/>
+                <field name="net_total_val"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
