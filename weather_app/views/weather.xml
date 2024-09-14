@@ -1,0 +1,54 @@
+<odoo>
+    <!-- Define Form View for Weather Data -->
+    <record id="view_weather_data_form" model="ir.ui.view">
+        <field name="name">weather.data.form</field>
+        <field name="model">weather.data</field>
+        <field name="arch" type="xml">
+            <form string="Weather Data">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Corrected Button with Combined Classes -->
+                        <button class="oe_stat_button btn-primary" name="fetch_and_store_weather_data"
+                                type="object" icon="fa-cloud">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">Fetch</span>
+                                <span class="o_stat_text">Weather</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <group>
+                        <field name="location"/>
+                        <field name="temperature"/>
+                        <field name="condition"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Define Tree View for Weather Data -->
+    <record id="view_weather_data_tree" model="ir.ui.view">
+        <field name="name">weather.data.tree</field>
+        <field name="model">weather.data</field>
+        <field name="arch" type="xml">
+            <tree string="Weather Data">
+                <field name="location"/>
+                <field name="temperature"/>
+                <field name="condition"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Define the Action to open the Weather Data Views -->
+    <record id="action_weather_data" model="ir.actions.act_window">
+        <field name="name">Weather Data</field>
+        <field name="res_model">weather.data</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Define the Menu Item -->
+    <menuitem id="menu_weather_data_root" name="Weather Integration" sequence="10"/>
+    <menuitem id="menu_weather_data" name="Weather Data" parent="menu_weather_data_root" action="action_weather_data" sequence="10"/>
+</odoo>
