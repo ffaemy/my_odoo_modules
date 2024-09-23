@@ -1,0 +1,44 @@
+
+
+<odoo>
+    <template id="product_catalog_template" name="Product Catalog">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Product Catalog</h1>
+
+                <!-- Search Bar -->
+                <form method="get" action="/product/catalog">
+                    <input type="text" name="search" class="form-control" placeholder="Search Products..." t-att-value="search"/>
+                    
+                    <!-- Category Filter -->
+                    <select name="category_id" class="form-control mt-2">
+                        <option value="">All Categories</option>
+                        <t t-foreach="categories" t-as="category">
+                            <option t-att-value="category.id" t-att-selected="category.id == selected_category_id">
+                                <t t-esc="category.name"/>
+                            </option>
+                        </t>
+                    </select>
+
+                    <!-- Sorting Options -->
+                    <select name="sort_by" class="form-control mt-2">
+                        <option value="name" t-att-selected="sort_by == 'name'">Sort by Name</option>
+                        <option value="list_price" t-att-selected="sort_by == 'list_price'">Sort by Price</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-primary mt-2">Filter</button>
+                </form>
+
+                <!-- Product List -->
+                <ul class="product-list mt-4">
+                    <t t-foreach="products" t-as="product">
+                        <li class="product-item">
+                            <h3><t t-esc="product.name"/></h3>
+                            <p>Price: <t t-esc="product.list_price"/> $</p>
+                        </li>
+                    </t>
+                </ul>
+            </div>
+        </t>
+    </template>
+</odoo>
