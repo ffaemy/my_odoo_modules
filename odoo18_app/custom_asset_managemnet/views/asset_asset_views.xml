@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- List View for Assets -->
+    <record id="view_asset_asset_list" model="ir.ui.view">
+        <field name="name">asset.asset.list</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="value"/>
+                <field name="current_value"/>
+                <field name="employee_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View for Assets -->
+    <record id="view_asset_asset_form" model="ir.ui.view">
+        <field name="name">asset.asset.form</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="category_id"/>
+                        <field name="value"/>
+                        <field name="purchase_date"/>
+                        <field name="depreciation_rate"/>
+                        <field name="current_value" readonly="1"/>
+                        <field name="employee_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Assets -->
+    <record id="action_asset_assets" model="ir.actions.act_window">
+        <field name="name">Assets</field>
+        <field name="res_model">asset.asset</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
+

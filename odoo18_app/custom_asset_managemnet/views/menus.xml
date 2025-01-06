@@ -1,0 +1,8 @@
+<odoo>
+
+    <menuitem id="menu_asset_management" name="Asset Management" sequence="10"/>
+
+    <menuitem id="menu_assets" name="Assets" parent="menu_asset_management" action="action_asset_assets" sequence="10"/>
+    <menuitem id="menu_asset_categories" name="Categories" parent="menu_asset_management" action="action_asset_categories" sequence="20"/>
+
+</odoo>

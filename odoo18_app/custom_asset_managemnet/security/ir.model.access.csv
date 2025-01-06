@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_custom,access.custom.model,model_asset_asset,base.group_user,1,1,1,1
+access_model_custom_category,access.custom.model.category,model_asset_category,base.group_user,1,1,1,1
+access_asset_asset_manager,asset_asset_manager,model_asset_asset,,1,1,1,1

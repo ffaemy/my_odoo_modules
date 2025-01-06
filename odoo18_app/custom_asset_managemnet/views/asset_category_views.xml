@@ -1,0 +1,34 @@
+<odoo>
+
+    <record id="view_asset_category_tree" model="ir.ui.view">
+        <field name="name">asset.category.tree</field>
+        <field name="model">asset.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_asset_category_form" model="ir.ui.view">
+        <field name="name">asset.category.form</field>
+        <field name="model">asset.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="action_asset_categories" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">asset.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
