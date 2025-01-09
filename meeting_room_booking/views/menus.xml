@@ -1,0 +1,7 @@
+<odoo>
+    <menuitem id="menu_meeting_management" name="Meeting Room Management" sequence="10"
+              web_icon="meeting_room_booking,static/description/icon.png"/>
+
+    <menuitem id="menu_meeting_rooms" name="Rooms" parent="menu_meeting_management" action="action_meeting_rooms" sequence="10"/>
+    <menuitem id="menu_meeting_bookings" name="Bookings" parent="menu_meeting_management" action="action_meeting_bookings" sequence="20"/>
+</odoo>
