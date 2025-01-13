@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_employee_achievement_tree" model="ir.ui.view">
+        <field name="name">employee.achievement.tree</field>
+        <field name="model">employee.achievement</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="type_id"/>
+                <field name="points"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_employee_achievement_form" model="ir.ui.view">
+        <field name="name">employee.achievement.form</field>
+        <field name="model">employee.achievement</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="type_id"/>
+                        <field name="points"/>
+                        <field name="state"/>
+                    </group>
+                    <footer>
+                        <button name="approve_achievement" string="Approve" type="object"
+                                class="oe_highlight"
+                                t-att-class="{'o_hidden': record.state.value === 'approved'}"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

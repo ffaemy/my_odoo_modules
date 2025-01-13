@@ -1,0 +1,11 @@
+<odoo>
+    <menuitem id="menu_employee_recognition" name="Employee Recognition" sequence="10"
+    web_icon="employee_recognition,static/description/icon.png"/>
+
+    <menuitem id="menu_ach_custom" name="Achievements" parent="menu_employee_recognition" action="action_employee_achievement" sequence="11"/>
+    
+    <menuitem id="menu_rewards" name="Rewards" parent="menu_employee_recognition" action="action_employee_reward" sequence="20"/>
+
+    <menuitem id="menu_achievement_type" name="Achievement Types"
+              parent="menu_employee_recognition" action="action_achievement_type" sequence="30"/>
+</odoo>

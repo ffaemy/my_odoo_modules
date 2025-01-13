@@ -1,0 +1,13 @@
+<odoo>
+    <record id="action_employee_achievement" model="ir.actions.act_window">
+        <field name="name">Achievements</field>
+        <field name="res_model">employee.achievement</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_employee_reward" model="ir.actions.act_window">
+        <field name="name">Rewards</field>
+        <field name="res_model">employee.reward</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
