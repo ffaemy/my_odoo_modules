@@ -1,0 +1,1 @@
+from . import discounted_products

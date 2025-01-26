@@ -1,0 +1,38 @@
+<odoo>
+    <template id="products_discounted" name="Discounted Products">
+        <t t-call="website.layout">
+            <div id="wrap" class="o_wsale_products_page">
+                <div class="container">
+                    <div class="text-center mb-4">
+                        <h2>Exclusive Discounted Products</h2>
+                    </div>
+                    <div class="row">
+                        <t t-if="products">
+                            <t t-foreach="products" t-as="product">
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div class="card">
+                                        <img t-att-src="product.image_1920" class="card-img-top" alt="Product Image"/>
+                                        <div class="card-body">
+                                            <h5 class="card-title" t-esc="product.name"/>
+                                            <p class="card-text">
+                                                <t t-esc="product.list_price"/> $
+                                            </p>
+                                            <a t-att-href="'/shop/product/' + str(product.id)" class="btn btn-primary">
+                                                View Product
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <div class="col-12 text-center">
+                                <h3>No discounted products available</h3>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

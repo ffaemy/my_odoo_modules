@@ -1,0 +1,8 @@
+<odoo>
+    <record id="menu_shop_discounted" model="website.menu">
+        <field name="name">Discounted Products</field>
+        <field name="url">/shop/discounted</field>
+        <field name="parent_id" ref="website_sale.menu_shop"/>
+        <field name="sequence" eval="10"/>
+    </record>
+</odoo>
