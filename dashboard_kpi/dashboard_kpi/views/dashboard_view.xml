@@ -1,0 +1,46 @@
+<odoo>
+
+    
+    <record id="view_kpi_dashboard" model="ir.ui.view">
+        <field name="name">custom.kpi.dashboard.form</field>
+        <field name="model">custom.kpi.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Sales &amp; Inventory Dashboard">
+                <sheet>
+                    <div class="kpi-dashboard">
+                        <div class="kpi-card-container">
+                            <div class="kpi-card kpi-sales">
+                                <h2>Total Sales</h2>
+                                <span class="kpi-value"><field name="total_sales"/></span>
+                            </div>
+                            <div class="kpi-card kpi-orders">
+                                <h2>Total Orders</h2>
+                                <span class="kpi-value"><field name="total_orders"/></span>
+                            </div>
+                            <div class="kpi-card kpi-stock">
+                                <h2>Total Stock</h2>
+                                <span class="kpi-value"><field name="total_stock"/></span>
+                            </div>
+
+                             <div class="kpi-refresh-container">
+                             <button name="action_refresh_dashboard" string="🔄 Refresh Data" type="object" class="oe_highlight kpi-refresh-button"/>
+                             </div>
+                        </div>
+                    </div>
+                </sheet>
+                
+            </form>
+        </field>
+    </record>
+
+    <record id="action_kpi_dashboard" model="ir.actions.act_window">
+        <field name="name">KPI Dashboard</field>
+        <field name="res_model">custom.kpi.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_kpi_dashboard"/>
+    </record>
+
+    <menuitem id="menu_kpi_dashboard" name="KPI Dashboard"
+              parent="base.reporting_menuitem"
+              action="action_kpi_dashboard"/>
+</odoo>
