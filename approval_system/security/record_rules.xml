@@ -1,0 +1,10 @@
+<odoo>
+
+    <record id="restrict_salesperson_order_confirm" model="ir.rule">
+        <field name="name">Restrict Salesperson Order Confirmation</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="domain_force">[('approval_state', '=', 'approved')]</field>
+        <field name="groups" eval="[(4, ref('approval_system.group_salesperson'))]"/>
+    </record>
+    
+</odoo>

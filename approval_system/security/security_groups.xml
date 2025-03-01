@@ -1,0 +1,22 @@
+
+<odoo>
+    <!-- Salesperson Group -->
+    <record id="group_salesperson" model="res.groups">
+        <field name="name">Salesperson</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+    <!-- Sales Manager Group -->
+    <record id="group_sales_manager" model="res.groups">
+        <field name="name">Sales Manager</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+        <field name="implied_ids" eval="[(4, ref('approval_system.group_salesperson'))]"/>
+    </record>
+
+    <!-- Administrator Group -->
+    <record id="group_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+        <field name="implied_ids" eval="[(4, ref('approval_system.group_sales_manager'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_sale_order_form_custom" model="ir.ui.view">
+        <field name="name">sale.order.form.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Approval Status Field -->
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="approval_state" widget="statusbar"/>
+            </xpath>
+
+            <!-- Add Approval Buttons using the new visibility method -->
+            <xpath expr="//button[@name='action_confirm']" position="replace">
+                <button name="approve_order" type="object" class="btn-primary" 
+                        string="Approve Order" groups="approval_system.group_sales_manager"
+                        expr="context.get('approval_state') != 'waiting' and {'invisible': True}"/>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button name="request_approval" type="object" class="btn-secondary"
+                        string="Request Approval" groups="approval_system.group_salesperson"
+                        expr="context.get('approval_state') != 'draft' and {'invisible': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
