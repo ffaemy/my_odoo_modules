@@ -1,0 +1,12 @@
+<odoo>
+    <record id="ir_cron_auto_archive_orders" model="ir.cron">
+        <field name="name">Archive Old Sales Orders</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=2, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="model_id" ref="model_custom_automation_task"/>
+        <field name="code">model.auto_archive_orders()</field>
+        <field name="state">code</field>
+        
+    </record>
+</odoo>
