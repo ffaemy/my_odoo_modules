@@ -1,0 +1,11 @@
+<odoo>
+    <template id="graph_template">
+        <t t-call="website.layout">
+            <t t-set="title">Graph Demo</t>
+            <div class="container">
+                <h2>Generated Graph</h2>
+                <img t-att-src="'data:image/png;base64,' + graph_img"/>
+            </div>
+        </t>
+    </template>
+</odoo>
