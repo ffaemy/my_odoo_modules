@@ -1,0 +1,87 @@
+<odoo>
+    <record id="view_custom_form" model="ir.ui.view">
+        <field name="name">custom.record.form</field>
+        <field name="model">custom.record</field>
+        <field name="arch" type="xml">
+            <form string="Custom Record Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="date"/>
+                        <field name="amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_custom_tree" model="ir.ui.view">
+        <field name="name">custom.record.tree</field>
+        <field name="model">custom.record</field>
+        <field name="arch" type="xml">
+            <list string="Custom Records">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="amount"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_custom_kanban" model="ir.ui.view">
+        <field name="name">custom.record.kanban</field>
+        <field name="model">custom.record</field>
+        <field name="arch" type="xml">
+            <kanban string="Custom Records">
+                <field name="name"/>
+                <field name="description"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <div class="oe_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <p><field name="description"/></p>
+                                <div class="oe_kanban_footer">
+                                    <span><field name="amount"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_custom_calendar" model="ir.ui.view">
+        <field name="name">custom.record.calendar</field>
+        <field name="model">custom.record</field>
+        <field name="arch" type="xml">
+            <calendar string="Custom Records Calendar" date_start="date">
+                <field name="name"/>
+                <field name="amount"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Action that links to the custom views (form, tree, kanban, etc.) -->
+    <record id="action_custom_record" model="ir.actions.act_window">
+        <field name="name">Custom Records</field>
+        <field name="res_model">custom.record</field>
+        <field name="view_mode">list,form,kanban,calendar</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Parent Menu (this will appear under the 'Settings' menu) -->
+    <menuitem id="base_menu_custom" 
+              name="Custom" 
+              sequence="10" 
+              web_icon="custom_views,static/description/icon.png"/>
+
+    <!-- Submenu item that links to the custom views -->
+    <menuitem id="custom_views_menu" 
+              name="Custom Views" 
+              parent="base_menu_custom" 
+              action="action_custom_record" 
+              sequence="10" />
+
+</odoo>
