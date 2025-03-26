@@ -1,0 +1,48 @@
+<odoo>
+
+    <record id="view_custom_record_form" model="ir.ui.view">
+        <field name="name">custom.record.form</field>
+        <field name="model">custom.record</field>
+        <field name="arch" type="xml">
+            <form string="Custom Record">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_custom_record_tree" model="ir.ui.view">
+        <field name="name">custom.record.list</field>
+        <field name="model">custom.record</field>
+        <field name="arch" type="xml">
+            <list string="Custom Records">
+                <field name="name"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action that links to the custom views (form, tree, kanban, etc.) -->
+    <record id="action_custom_record" model="ir.actions.act_window">
+        <field name="name">Custom Records</field>
+        <field name="res_model">custom.record</field>
+        <field name="view_mode">list,form</field>  <!-- Links the tree and form views -->
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="base_menu_custom" 
+              name="Custom" 
+              sequence="10" 
+              web_icon="custom_views,static/description/icon.png"/>
+
+    <menuitem id="custom_views_menu" 
+              name="Custom Views" 
+              parent="base_menu_custom" 
+              action="action_custom_record" 
+              sequence="10" />
+</odoo>
