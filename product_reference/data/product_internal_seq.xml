@@ -1,0 +1,29 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="seq_product_internal_ref_remote" model="ir.sequence">
+            <field name="name">Product Internal Reference - Remote</field>
+            <field name="code">product.internal.ref.remote</field>
+            <field name="prefix">Rem</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+        </record>
+
+        <record id="seq_product_internal_ref_incountry" model="ir.sequence">
+            <field name="name">Product Internal Reference - Incountry</field>
+            <field name="code">product.internal.ref.incountry</field>
+            <field name="prefix">Inc</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+        </record>
+
+        <record id="seq_product_internal_ref_overseas" model="ir.sequence">
+            <field name="name">Product Internal Reference - Overseas</field>
+            <field name="code">product.internal.ref.overseas</field>
+            <field name="prefix">Over</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+        </record>
+
+    </data>
+</odoo>
