@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_newsletter_subscriber,access_newsletter_subscriber,model_newsletter_subscriber,base.group_user,1,1,1,1
+access_subscription_category,access_subscription_category,model_subscription_category,base.group_user,1,1,1,0
+access_subscriber_mail_wizard,access_subscriber_mail_wizard,model_subscriber_mail_wizard,base.group_user,1,1,1,0

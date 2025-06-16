@@ -1,0 +1,29 @@
+<odoo>
+
+    <record id="action_subscriber_mail_wizard" model="ir.actions.act_window">
+        <field name="name">Send Newsletter</field>
+        <field name="res_model">subscriber.mail.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+  <record id="view_subscriber_mail_wizard" model="ir.ui.view">
+    <field name="name">subscriber.mail.wizard.form</field>
+    <field name="model">subscriber.mail.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Send Newsletter">
+        <group>
+          <field name="category_id"/>
+          <field name="subject"/>
+          <field name="message"/>
+        </group>
+        <footer>
+          <button string="Send Emails" type="object" name="send_email" class="btn-primary"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  
+</odoo>

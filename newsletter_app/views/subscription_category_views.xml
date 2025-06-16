@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Subscription Category List View -->
+    <record id="view_subscription_category_tree" model="ir.ui.view">
+        <field name="name">subscription.category.tree</field>
+        <field name="model">subscription.category</field>
+        <field name="arch" type="xml">
+            <list string="Subscription Categories">
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Subscription Category Form View -->
+    <record id="view_subscription_category_form" model="ir.ui.view">
+        <field name="name">subscription.category.form</field>
+        <field name="model">subscription.category</field>
+        <field name="arch" type="xml">
+            <form string="Subscription Category">
+                <sheet>
+                    <header>
+        <button name="action_view_subscribers" type="object" string="Subscribers" class="oe_stat_button" icon="fa-users"/>
+      </header>
+      <button name="%(action_subscriber_mail_wizard)d"
+        type="action"
+        string="Send Newsletter"
+        class="btn-primary"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open Subscription Categories -->
+    <record id="action_subscription_category" model="ir.actions.act_window">
+        <field name="name">Subscription Categories</field>
+        <field name="res_model">subscription.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

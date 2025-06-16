@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Top-Level Menu -->
+    <menuitem id="menu_newsletter_root" name="Newsletter" sequence="20"/>
+
+    <!-- Subscriber Management -->
+    <menuitem id="menu_newsletter_subscriber"
+              name="Subscribers"
+              parent="menu_newsletter_root"
+              action="action_newsletter_subscriber"
+              sequence="10"/>
+
+    <!-- Subscription Category Management -->
+    <menuitem id="menu_newsletter_category"
+              name="Subscription Categories"
+              parent="menu_newsletter_root"
+              action="action_subscription_category"
+              sequence="20"/>
+</odoo>

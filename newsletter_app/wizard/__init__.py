@@ -1,0 +1,1 @@
+from . import subscriber_mail_wizard

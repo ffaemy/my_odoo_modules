@@ -1,0 +1,8 @@
+<odoo>
+  <record id="category_news" model="subscription.category">
+    <field name="name">News &amp; Updates</field>
+  </record>
+  <record id="category_events" model="subscription.category">
+    <field name="name">Events &amp; Webinars</field>
+  </record>
+</odoo>
