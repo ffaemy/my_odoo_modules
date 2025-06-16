@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_custom_search_demo_search" model="ir.ui.view">
+        <field name="name">custom.search.demo.search</field>
+        <field name="model">custom.search.demo</field>
+        <field name="arch" type="xml">
+            <search string="Search Demo Records">
+                <field name="name" string="Record Name"/>
+                <field name="date" string="Date"/>
+
+                <!-- Custom Filters -->
+                <filter name="filter_status_new" string="Status: New" domain="[('status','=','new')]"/>
+                <filter name="filter_status_in_progress" string="Status: In Progress" domain="[('status','=','in_progress')]"/>
+                <filter name="filter_status_done" string="Status: Done" domain="[('status','=','done')]"/>
+                <filter name="filter_high_priority" string="High Priority" domain="[('priority','=','2')]"/>
+                <filter name="filter_today" string="Today" domain="[('date','=',context_today())]" help="Records with today's date"/>
+
+                <!-- Group By Options -->
+                <group expand="0" string="Group By">
+                    <filter name="group_by_status" string="Status" context="{'group_by': 'status'}"/>
+                    <filter name="group_by_priority" string="Priority" context="{'group_by': 'priority'}"/>
+                    <filter name="group_by_date" string="Date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>
