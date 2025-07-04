@@ -1,0 +1,23 @@
+<odoo>
+
+  
+  <template id="SaleOrderCounter" name="Sale Order Counter" t-name="custom_partner_widget.SaleOrderCounter">
+  <div class="d-inline-flex align-items-center gap-2">
+    <span class="fw-bold text-secondary">🛒 Sale Orders:</span>
+    <span t-esc="state.count" class="badge bg-success rounded-pill px-3 py-1 fs-6 shadow-sm"/>
+  </div>
+</template>
+
+  <record id="view_partner_form_custom_widget" model="ir.ui.view">
+    <field name="name">res.partner.form.sale.order.counter</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='phone']" position="after">
+  
+        <field name="sale_order_count" widget="sale_order_counter" readonly="1" string=""/>
+
+</xpath>
+    </field>
+  </record>
+</odoo>
