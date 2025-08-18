@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <t t-name="owl_notification_widget.TaskNotificationWidget">
+    <div class="o_systray_dropdown dropdown">
+      <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        📝 Tasks (<t t-esc="state.tasks.length"/>)
+      </button>
+      <ul class="dropdown-menu p-2">
+        <t t-if="state.tasks.length">
+          <t t-foreach="state.tasks" t-as="task" t-key="task.id">
+            <li>
+              <a href="#" class="dropdown-item" t-on-click.prevent="() => openTask(task.id)">
+                <t t-esc="task.name"/>
+              </a>
+            </li>
+          </t>
+        </t>
+        <t t-else="">
+          <li><span class="dropdown-item text-muted">No tasks</span></li>
+        </t>
+      </ul>
+    </div>
+  </t>
+</odoo>
