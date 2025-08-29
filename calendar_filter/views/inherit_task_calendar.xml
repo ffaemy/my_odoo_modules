@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--  Inherit project task calendar view for add filter  -->
+    <record id="inherit_project_task_all_calendar" model="ir.ui.view">
+        <field name="name">inherit.project.task.all.calendar</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_calendar"/>
+        <field name="arch" type="xml">
+            <field name="user_ids" position="replace">
+                <field name="user_ids" options="{'block': True, 'icon': 'fa fa-users'}"
+                   filters="1"  write_model="task.filters"
+                   write_field="assignee_id" filter_field="assignee_checked" avatar_field="avatar_128"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
