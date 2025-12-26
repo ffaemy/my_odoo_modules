@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Add a thank-you block just after the totals -->
+    <t t-name="pos_receipt_custom_19.OrderReceipt"
+       t-inherit="point_of_sale.OrderReceipt"
+       t-inherit-mode="extension">
+        <xpath expr="//div[@class='before-footer']"
+               position="before">
+            <div t-if="order.receiptBarcodeUrl"
+                 class="pos-receipt-barcode">
+                <img t-att-src="order.receiptBarcodeUrl"
+                     alt="Order barcode"
+                     class="pos-receipt-barcode__img"/>
+                <div class="pos-receipt-barcode__text">
+                    <t t-esc="order.receiptBarcodeValue"/>
+                </div>
+            </div>
+            <div class="pos-thankyou-block">
+                <p class="pos-thankyou-main">
+                    Thank you for your purchase!
+                </p>
+                <p t-if="order.company.phone">
+                    Phone:
+                    <span t-esc="order.company.phone"/>
+                </p>
+                <p t-if="order.company.email">
+                    Email:
+                    <span t-esc="order.company.email"/>
+                </p>
+
+                <!-- Uses standard POS footer text from config -->
+                <p t-if="order.config.receipt_footer"
+                   class="pos-custom-footer">
+                    <t t-esc="order.config.receipt_footer"/>
+                </p>
+            </div>
+        </xpath>
+    </t>
+
+    <!-- Show the POS category below each line when printing -->
+    <t t-name="pos_receipt_custom_19.Orderline"
+       t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension">
+        <xpath expr="//ul[contains(@class, 'info-list')]"
+               position="inside">
+            <li t-if="vals.isReceipt and line.categoryName"
+                class="pos-line-category">
+                <small t-esc="line.categoryName"/>
+            </li>
+        </xpath>
+    </t>
+
+</templates>

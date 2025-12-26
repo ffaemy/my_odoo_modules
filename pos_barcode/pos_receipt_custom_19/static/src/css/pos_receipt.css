@@ -1,0 +1,45 @@
+/* pos_receipt_custom_19/static/src/css/pos_receipt.css */
+
+/* Category text under item name */
+.pos-line-category {
+    font-size: 11px;
+    color: #777;
+}
+
+/* Barcode on the receipt */
+.pos-receipt-barcode {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.pos-receipt-barcode__img {
+    width: 100%;
+    max-width: 320px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.pos-receipt-barcode__text {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    color: #333;
+}
+
+/* Thank-you + footer block */
+.pos-thankyou-block {
+    margin-top: 16px;
+    padding-top: 8px;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+}
+
+.pos-thankyou-main {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.pos-custom-footer {
+    margin-top: 6px;
+    font-style: italic;
+}
