@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_academy_course_enrollment_user,access.academy.course.enrollment.user,model_academy_course_enrollment,base.group_user,1,1,1,1

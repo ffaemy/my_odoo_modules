@@ -1,0 +1,10 @@
+<odoo>
+    <record id="seq_academy_course_enrollment" model="ir.sequence">
+        <field name="name">Course Enrollment</field>
+        <field name="code">academy.course.enrollment</field>
+        <field name="prefix">ENR/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="number_increment">1</field>
+        <field name="implementation">standard</field>
+    </record>
+</odoo>

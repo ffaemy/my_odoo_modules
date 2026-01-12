@@ -1,0 +1,46 @@
+<odoo>
+
+    <record id="view_academy_course_enrollment_tree" model="ir.ui.view">
+        <field name="name">academy.course.enrollment.tree</field>
+        <field name="model">academy.course.enrollment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="student_name"/>
+                <field name="course_name"/>
+                <field name="enrollment_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_academy_course_enrollment_form" model="ir.ui.view">
+        <field name="name">academy.course.enrollment.form</field>
+        <field name="model">academy.course.enrollment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="student_name"/>
+                        <field name="course_name"/>
+                        <field name="enrollment_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_academy_course_enrollment" model="ir.actions.act_window">
+        <field name="name">Course Enrollments</field>
+        <field name="res_model">academy.course.enrollment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_academy_root" name="Academy Demo" sequence="10"/>
+    <menuitem id="menu_academy_enrollment"
+              name="Enrollments"
+              parent="menu_academy_root"
+              action="action_academy_course_enrollment"
+              sequence="10"/>
+
+</odoo>
