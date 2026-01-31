@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_odooistic_brand_list" model="ir.ui.view">
+    <field name="name">odooistic.brand.list</field>
+    <field name="model">odooistic.brand</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="company_id"/>
+        <field name="active"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_odooistic_brand_form" model="ir.ui.view">
+    <field name="name">odooistic.brand.form</field>
+    <field name="model">odooistic.brand</field>
+    <field name="arch" type="xml">
+      <form string="Brand">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="company_id"/>
+            <field name="active"/>
+          </group>
+
+          <notebook>
+            <page string="Logos">
+              <group>
+                <field name="logo_large" widget="image" class="oe_avatar"
+                       options="{'preview_image': 'logo_large'}"/>
+                <field name="logo_small" widget="image"
+                       options="{'preview_image': 'logo_small'}"/>
+                <field name="footer_logo" widget="image"
+                       options="{'preview_image': 'footer_logo'}"/>
+              </group>
+            </page>
+
+            <page string="Header / Footer">
+              <group>
+                <field name="tagline" placeholder="e.g. We turn ideas into ERP."/>
+              </group>
+              <group>
+                <field name="header_html" placeholder="Optional header details (HTML)"/>
+              </group>
+              <group>
+                <field name="footer_html" placeholder="Optional footer details (HTML)"/>
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_odooistic_brand" model="ir.actions.act_window">
+    <field name="name">Brands</field>
+    <field name="res_model">odooistic.brand</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_odooistic_root" name="Odooistic" sequence="90"/>
+  <menuitem id="menu_odooistic_reporting" name="Reporting" parent="menu_odooistic_root" sequence="10"/>
+  <menuitem id="menu_odooistic_brands" name="Brands" parent="menu_odooistic_reporting"
+            action="action_odooistic_brand" sequence="10"/>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--
+    Custom external layout used by our report inherit templates.
+    It reads `doc.brand_id` when available, otherwise falls back to company layout.
+  -->
+  <template id="external_layout" inherit_id="web.external_layout_standard">
+    <!-- HEADER -->
+    <xpath expr="//div[contains(@t-attf-class,'header')]" position="replace">
+      <div class="header">
+        <t t-set="company" t-value="doc and doc.company_id or False"/>
+        <t t-set="brand" t-value="doc and (doc.brand_id or (company and doc.env['odooistic.brand'].search([('company_id', '=', company.id)], limit=1))) or False"/>
+        <div class="row align-items-center">
+          <div class="col-8">
+            <div class="d-flex align-items-center flex-wrap gap-2">
+              <t t-if="brand and brand.logo_large">
+                <img t-att-src="image_data_uri(brand.logo_large)" style="max-height: 60px;"/>
+              </t>
+              <t t-if="brand and brand.logo_small">
+                <img t-att-src="image_data_uri(brand.logo_small)" style="max-height: 40px;"/>
+              </t>
+              <t t-if="brand and brand.footer_logo">
+                <img t-att-src="image_data_uri(brand.footer_logo)" style="max-height: 30px;"/>
+              </t>
+              <t t-if="not (brand and (brand.logo_large or brand.logo_small or brand.footer_logo)) and company and company.logo">
+                <img t-att-src="image_data_uri(company.logo)" style="max-height: 55px;"/>
+              </t>
+            </div>
+            <div t-if="brand and brand.tagline" class="mt-1 text-muted">
+              <small t-esc="brand.tagline"/>
+            </div>
+          </div>
+
+          <div class="col-4 text-end">
+            <!-- Dynamic title (Quotation / Order / Invoice etc.) is handled in the document template,
+                 but we also show a top-right document number if available -->
+            <div t-if="doc and doc.name">
+              <strong t-esc="doc.name"/>
+            </div>
+            <div t-if="brand and brand.header_html" class="mt-1">
+              <t t-out="brand.header_html"/>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-2 mb-0"/>
+      </div>
+    </xpath>
+
+    <!-- FOOTER -->
+    <xpath expr="//div[contains(@t-attf-class,'footer')]" position="replace">
+      <div class="footer">
+        <t t-set="company" t-value="doc and doc.company_id or False"/>
+        <t t-set="brand" t-value="doc and (doc.brand_id or (company and doc.env['odooistic.brand'].search([('company_id', '=', company.id)], limit=1))) or False"/>
+        <hr class="mb-2 mt-0"/>
+        <div class="row">
+          <div class="col-4">
+            <t t-if="brand and brand.footer_logo">
+              <img t-att-src="image_data_uri(brand.footer_logo)" style="max-height: 30px;"/>
+            </t>
+            <t t-elif="brand and brand.logo_small">
+              <img t-att-src="image_data_uri(brand.logo_small)" style="max-height: 30px;"/>
+            </t>
+          </div>
+          <div class="col-8 text-end">
+            <div t-if="brand and brand.tagline" class="text-muted">
+              <small t-esc="brand.tagline"/>
+            </div>
+            <div t-if="brand and brand.footer_html">
+              <t t-out="brand.footer_html"/>
+            </div>
+            <div t-elif="company and company.report_footer">
+              <small t-esc="company.report_footer"/>
+            </div>
+            <div class="mt-1">
+              <small>
+                Page <span class="page"/> / <span class="topage"/>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </xpath>
+  </template>
+</odoo>

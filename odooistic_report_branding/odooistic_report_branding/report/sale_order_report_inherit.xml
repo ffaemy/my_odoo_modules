@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_saleorder_document_inherit_odooistic" inherit_id="sale.report_saleorder_document">
+    <!-- Replace layout call -->
+    <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+      <attribute name="t-call">odooistic_report_branding.external_layout</attribute>
+    </xpath>
+
+    <!-- Dynamic title -->
+    <xpath expr="//t[@t-set='layout_document_title']" position="replace">
+      <t t-set="layout_document_title">
+        <span t-if="doc.state in ('draft', 'sent')">Quotation</span>
+        <span t-elif="doc.state in ('sale', 'done')">Sales Order</span>
+        <span t-else="">Document</span>
+        <span class="text-muted" t-esc="doc.name"/>
+      </t>
+    </xpath>
+
+    <!-- Highlights row -->
+    <xpath expr="//div[@id='informations']" position="after">
+      <div class="row mb-3" name="odooistic_highlights">
+        <div class="col-6 col-md-3 mb-2">
+          <div class="border rounded p-2 h-100">
+            <div class="text-muted small">Total</div>
+            <div class="fw-bold">
+              <span t-field="doc.amount_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mb-2" t-if="doc.payment_term_id">
+          <div class="border rounded p-2 h-100">
+            <div class="text-muted small">Payment Terms</div>
+            <div class="fw-semibold" t-esc="doc.payment_term_id.name"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mb-2" t-if="doc.validity_date and doc.state in ['draft', 'sent']">
+          <div class="border rounded p-2 h-100">
+            <div class="text-muted small">Valid Until</div>
+            <div class="fw-semibold">
+              <span t-field="doc.validity_date" t-options='{"widget": "date"}'/>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mb-2" t-if="doc.commitment_date">
+          <div class="border rounded p-2 h-100">
+            <div class="text-muted small">Delivery Date</div>
+            <div class="fw-semibold">
+              <span t-field="doc.commitment_date" t-options='{"widget": "date"}'/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </xpath>
+
+    <!-- Section title before lines -->
+    <xpath expr="//table[contains(@class,'o_main_table')]" position="before">
+      <div class="d-flex justify-content-between align-items-end mb-2">
+        <h3 class="h6 text-uppercase text-muted mb-0">Line Items</h3>
+        <t t-if="doc.client_order_ref">
+          <small class="text-muted">Your Ref: <span t-esc="doc.client_order_ref"/></small>
+        </t>
+      </div>
+    </xpath>
+
+    <!-- Terms heading -->
+    <xpath expr="//span[@name='order_note']" position="before">
+      <h4 class="h6 text-uppercase text-muted mt-3 mb-1">Terms &amp; Conditions</h4>
+    </xpath>
+
+    <!-- Page break after order note -->
+    <xpath expr="//span[@name='order_note']" position="after">
+      <div class="page"/>
+    </xpath>
+  </template>
+</odoo>
