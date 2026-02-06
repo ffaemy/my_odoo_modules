@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_odooistic_approval_rule_list" model="ir.ui.view">
+    <field name="name">odooistic.approval.rule.list</field>
+    <field name="model">odooistic.approval.rule</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="sequence"/>
+        <field name="name"/>
+        <field name="company_id"/>
+        <field name="min_amount"/>
+        <field name="group_id"/>
+        <field name="active"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_odooistic_approval_rule_form" model="ir.ui.view">
+    <field name="name">odooistic.approval.rule.form</field>
+    <field name="model">odooistic.approval.rule</field>
+    <field name="arch" type="xml">
+      <form string="Approval Rule">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="company_id"/>
+            <field name="active"/>
+          </group>
+          <group>
+            <field name="sequence"/>
+            <field name="min_amount"/>
+            <field name="currency_id" readonly="1"/>
+            <field name="group_id"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_odooistic_approval_rule" model="ir.actions.act_window">
+    <field name="name">Approval Rules</field>
+    <field name="res_model">odooistic.approval.rule</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_odooistic_root" name="Odooistic" sequence="90"/>
+  <menuitem id="menu_odooistic_sales" name="Sales" parent="menu_odooistic_root" sequence="10"/>
+  <menuitem id="menu_odooistic_approval_rules" name="Approval Rules"
+            parent="menu_odooistic_sales" action="action_odooistic_approval_rule" sequence="10"/>
+</odoo>

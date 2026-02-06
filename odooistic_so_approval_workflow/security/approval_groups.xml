@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="group_odooistic_approver_manager" model="res.groups">
+    <field name="name">SO Approver (Manager)</field>
+  </record>
+
+  <record id="group_odooistic_approver_director" model="res.groups">
+    <field name="name">SO Approver (Director)</field>
+    <field name="implied_ids" eval="[(4, ref('odooistic_so_approval_workflow.group_odooistic_approver_manager'))]"/>
+  </record>
+</odoo>

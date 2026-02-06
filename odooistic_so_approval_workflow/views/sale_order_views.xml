@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_sale_order_form_odooistic_approval" model="ir.ui.view">
+    <field name="name">sale.order.form.odooistic.approval</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+
+      <!-- Approval statusbar -->
+      <xpath expr="//header" position="inside">
+        <field name="approval_state" widget="statusbar"
+               statusbar_visible="draft,to_approve,approved,rejected"
+               readonly="1"/>
+      </xpath>
+
+      <!-- Buttons -->
+      <xpath expr="//header" position="inside">
+        <button name="action_submit_for_approval" type="object" string="Submit for Approval"
+                class="btn-primary"
+                invisible="approval_state != 'draft' or state not in ('draft','sent')"/>
+        <button name="action_approve" type="object" string="Approve"
+                class="btn-success"
+                invisible="approval_state != 'to_approve'"/>
+        <button name="action_reject" type="object" string="Reject"
+                class="btn-danger"
+                invisible="approval_state not in ('to_approve','approved')"/>
+        <button name="action_reset_approval" type="object" string="Reset Approval"
+                invisible="approval_state == 'draft'"/>
+      </xpath>
+
+      <!-- Show approval info -->
+      <xpath expr="//sheet" position="inside">
+        <group string="Approvals" invisible="approval_state == 'draft'">
+          <field name="approval_next_group_id" readonly="1"/>
+          <field name="approval_done_rule_ids" widget="many2many_tags" readonly="1"/>
+        </group>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>
