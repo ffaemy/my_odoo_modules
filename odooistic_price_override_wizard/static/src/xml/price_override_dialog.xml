@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="odooistic_price_override_wizard.PriceOverrideDialog">
+        <div class="o_dialog_container">
+            <div class="modal-header">
+                <h4 class="modal-title">Price Override (OWL)</h4>
+                <button type="button" class="btn-close" aria-label="Close" t-on-click="close"/>
+            </div>
+
+            <div class="modal-body">
+                <t t-if="state.error">
+                    <div class="alert alert-danger" role="alert">
+                        <t t-esc="state.error"/>
+                    </div>
+                </t>
+
+                <div class="mb-3">
+                    <label class="form-label">Pricing mode</label>
+                    <div class="text-muted small">
+                        Bulk discount % on all lines (more modes can be added later).
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Discount %</label>
+                    <input class="form-control"
+                           type="number"
+                           min="0" max="100" step="0.1"
+                           t-att-value="state.discount"
+                           t-on-input="onDiscountInput"
+                           t-att-disabled="state.loading"/>
+                </div>
+
+                <div class="border-top pt-3">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <strong>Live Preview</strong>
+                        <t t-if="state.loading">
+                            <span class="text-muted small">Calculating…</span>
+                        </t>
+                    </div>
+
+                    <t t-if="state.preview">
+                        <div class="row g-2">
+                            <div class="col-7">Untaxed amount</div>
+                            <div class="col-5 text-end"><strong><t t-esc="formatMoney(state.preview.amount_untaxed)"/></strong></div>
+
+                            <div class="col-7">Tax</div>
+                            <div class="col-5 text-end"><strong><t t-esc="formatMoney(state.preview.amount_tax)"/></strong></div>
+
+                            <div class="col-7">Total</div>
+                            <div class="col-5 text-end"><strong><t t-esc="formatMoney(state.preview.amount_total)"/></strong></div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="text-muted">No preview available.</div>
+                    </t>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" t-on-click="close" t-att-disabled="state.loading">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary" t-on-click="apply" t-att-disabled="state.loading">
+                    Apply Discount
+                </button>
+            </div>
+        </div>
+    </t>
+
+</templates>
