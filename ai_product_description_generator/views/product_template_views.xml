@@ -1,0 +1,28 @@
+<odoo>
+    <record id="product_template_form_view_ai_description" model="ir.ui.view">
+        <field name="name">product.template.form.ai.description</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+
+            <!-- Product templates do not have a form header in Odoo 19. -->
+            <xpath expr="//div[@name='options']" position="after">
+                <button name="action_generate_ai_description"
+                        type="object"
+                        string="Generate AI Description"
+                        class="btn btn-primary mb-3"/>
+            </xpath>
+
+            <!-- Output section -->
+            <xpath expr="//page[@name='sales']//group[@name='description']" position="after">
+                <group string="AI Description Output">
+                    <field name="ai_generated_description"
+                           widget="html"
+                           readonly="1"
+                           placeholder="Raw AI output..."/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

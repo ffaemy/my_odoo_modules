@@ -1,0 +1,32 @@
+<odoo>
+    <record id="res_config_settings_view_form_ai_description" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.ai.description</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//form" position="inside">
+                <app
+                    data-string="AI Product Description"
+                    string="AI Product Description"
+                    name="ai_product_description_generator"
+                >
+
+                    <block title="Gemini Settings">
+
+                        <setting string="Gemini API Key">
+                            <field name="ai_gemini_api_key" password="True"/>
+                        </setting>
+
+                        <setting string="AI Model">
+                            <field name="ai_gemini_model"/>
+                        </setting>
+
+                    </block>
+
+                </app>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
