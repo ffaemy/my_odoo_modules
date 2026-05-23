@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_odoo19_rest_api" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.odoo19.rest.api</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Odoo 19 REST API" name="odoo19_rest_api" groups="base.group_system">
+                    <block title="REST API Authentication">
+                        <setting string="API Key" help="Use this key in the request header: Authorization: Bearer YOUR_API_KEY">
+                            <field name="odoo19_rest_api_key" password="True"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

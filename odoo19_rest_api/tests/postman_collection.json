@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "Odoo 19 REST API Demo",
+    "description": "Demo collection for the odoo19_rest_api module. Set the {{base_url}} and {{api_key}} variables in the environment, then run requests top-to-bottom — Create Customer captures its ID for the Sale Order request.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "base_url", "value": "http://localhost:8077"},
+    {"key": "api_key", "value": "CHANGE_ME"},
+    {"key": "partner_id", "value": ""},
+    {"key": "product_id", "value": "1"}
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {"raw": "{{base_url}}/api/health", "host": ["{{base_url}}"], "path": ["api", "health"]}
+      }
+    },
+    {
+      "name": "Get Products",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{api_key}}"}
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/products?limit=5",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products"],
+          "query": [{"key": "limit", "value": "5"}]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const json = pm.response.json();",
+              "pm.test('200 OK', () => pm.response.to.have.status(200));",
+              "pm.test('success flag', () => pm.expect(json.success).to.be.true);",
+              "if (json.products && json.products.length) {",
+              "  pm.collectionVariables.set('product_id', json.products[0].id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{api_key}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"ACME Ltd\",\n    \"email\": \"hello@acme.test\",\n    \"phone\": \"+441234567890\",\n    \"company_name\": \"ACME Ltd\"\n}"
+        },
+        "url": {"raw": "{{base_url}}/api/customer/create", "host": ["{{base_url}}"], "path": ["api", "customer", "create"]}
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const json = pm.response.json();",
+              "pm.test('201 Created', () => pm.response.to.have.status(201));",
+              "pm.test('success flag', () => pm.expect(json.success).to.be.true);",
+              "pm.collectionVariables.set('partner_id', json.customer.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Sale Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{api_key}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partner_id\": {{partner_id}},\n    \"origin\": \"Postman\",\n    \"client_order_ref\": \"PM-1001\",\n    \"order_lines\": [\n        {\"product_id\": {{product_id}}, \"quantity\": 2}\n    ]\n}"
+        },
+        "url": {"raw": "{{base_url}}/api/sale_order/create", "host": ["{{base_url}}"], "path": ["api", "sale_order", "create"]}
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const json = pm.response.json();",
+              "pm.test('201 Created', () => pm.response.to.have.status(201));",
+              "pm.test('success flag', () => pm.expect(json.success).to.be.true);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Negative — Missing API Key",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('401 Unauthorized', () => pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
