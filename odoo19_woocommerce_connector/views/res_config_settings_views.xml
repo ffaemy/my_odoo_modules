@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_woocommerce_connector" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.woocommerce.connector</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="WooCommerce" name="odoo19_woocommerce_connector" groups="base.group_system">
+                    <block title="WooCommerce API Credentials">
+                        <setting string="Store URL" help="Your WooCommerce website URL. Example: https://ifairbeautyandhair.com">
+                            <field name="woo_url" placeholder="https://your-woocommerce-store.com"/>
+                        </setting>
+                        <setting string="Consumer Key" help="Generated from WooCommerce → Settings → Advanced → REST API.">
+                            <field name="woo_consumer_key" password="True" placeholder="ck_xxxxxxxxxxxxxxxxx"/>
+                        </setting>
+                        <setting string="Consumer Secret" help="Generated from WooCommerce → Settings → Advanced → REST API.">
+                            <field name="woo_consumer_secret" password="True" placeholder="cs_xxxxxxxxxxxxxxxxx"/>
+                        </setting>
+                    </block>
+
+                    <block title="Connection Options">
+                        <setting string="Verify SSL" help="Keep this enabled for production websites using HTTPS.">
+                            <field name="woo_verify_ssl"/>
+                        </setting>
+                        <setting string="Timeout" help="Number of seconds before the WooCommerce request fails.">
+                            <field name="woo_timeout"/>
+                        </setting>
+                        <setting string="Import Limit" help="Maximum records to import per click for demo/tutorial usage.">
+                            <field name="woo_import_limit"/>
+                        </setting>
+                        <setting string="Order Statuses" help="Comma-separated WooCommerce statuses to import, for example processing,completed,on-hold.">
+                            <field name="woo_import_statuses"/>
+                        </setting>
+                    </block>
+
+                    <block title="Booking Flow">
+                        <setting string="Create Draft Sale Order" help="Create a draft quotation for each imported WooCommerce booking/order.">
+                            <field name="woo_create_sale_order"/>
+                        </setting>
+                        <setting string="Create Calendar Appointment" help="Create a calendar appointment when booking date/time metadata is available.">
+                            <field name="woo_create_calendar_event"/>
+                        </setting>
+                        <setting string="Default Booking Duration" help="Hours to use when WooCommerce provides a start time but no end time.">
+                            <field name="woo_default_booking_duration"/>
+                        </setting>
+                    </block>
+
+                    <block title="Salon Booking API">
+                        <setting string="Salon API URL" help="Website URL where the Odoo Salon helper plugin is installed.">
+                            <field name="salon_api_url" placeholder="https://ifairbeautyandhair.com"/>
+                        </setting>
+                        <setting string="Salon API Token" help="Token from the Odoo Salon helper plugin in WordPress.">
+                            <field name="salon_api_token" password="True"/>
+                        </setting>
+                    </block>
+
+                    <block title="WooCommerce Actions">
+                        <setting string="Test Connection" help="Check whether Odoo can communicate with WooCommerce.">
+                            <button name="action_test_woocommerce_connection"
+                                    string="Test Connection"
+                                    type="object"
+                                    class="btn-primary"/>
+                        </setting>
+                        <setting string="Import Products" help="Import or update WooCommerce products into Odoo Products.">
+                            <button name="action_import_woo_products"
+                                    string="Import Products"
+                                    type="object"
+                                    class="btn-secondary"/>
+                        </setting>
+                        <setting string="Import Customers" help="Import or update WooCommerce customers into Odoo Contacts.">
+                            <button name="action_import_woo_customers"
+                                    string="Import Customers"
+                                    type="object"
+                                    class="btn-secondary"/>
+                        </setting>
+                        <setting string="Import Orders" help="Create draft sales orders from WooCommerce orders.">
+                            <button name="action_import_woo_orders"
+                                    string="Import Orders"
+                                    type="object"
+                                    class="btn-secondary"/>
+                        </setting>
+                        <setting string="Import Bookings" help="Create contacts, draft quotations and calendar appointments from WooCommerce booking orders.">
+                            <button name="action_import_woo_bookings"
+                                    string="Import Bookings"
+                                    type="object"
+                                    class="btn-secondary"/>
+                        </setting>
+                        <setting string="Test Salon API" help="Check whether Odoo can communicate with the WordPress Salon helper endpoint.">
+                            <button name="action_test_salon_connection"
+                                    string="Test Salon API"
+                                    type="object"
+                                    class="btn-primary"/>
+                        </setting>
+                        <setting string="Import Salon Bookings" help="Import bookings directly from Salon Booking System, not WooCommerce orders.">
+                            <button name="action_import_salon_bookings"
+                                    string="Import Salon Bookings"
+                                    type="object"
+                                    class="btn-secondary"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

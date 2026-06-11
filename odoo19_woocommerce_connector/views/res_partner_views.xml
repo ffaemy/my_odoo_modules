@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_partner_form_view_inherit_woocommerce_connector" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.woocommerce.connector</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="WooCommerce">
+                    <group>
+                        <field name="woo_id" readonly="1"/>
+                        <field name="woo_sync_date" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_order_form_view_inherit_woocommerce_connector" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.woocommerce.connector</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="WooCommerce">
+                    <group>
+                        <field name="woo_order_id" readonly="1"/>
+                        <field name="woo_order_key" readonly="1"/>
+                        <field name="woo_status" readonly="1"/>
+                        <field name="woo_sync_date" readonly="1"/>
+                    </group>
+                    <group string="Booking">
+                        <field name="woo_booking_service" readonly="1"/>
+                        <field name="woo_booking_start" readonly="1"/>
+                        <field name="woo_booking_stop" readonly="1"/>
+                        <field name="woo_booking_staff" readonly="1"/>
+                        <field name="woo_calendar_event_id" readonly="1"/>
+                        <field name="woo_booking_notes" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
