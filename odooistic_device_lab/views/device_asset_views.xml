@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- List View -->
+
+    <record id="device_asset_view_list" model="ir.ui.view">
+        <field name="name">device.asset.list</field>
+        <field name="model">device.asset</field>
+
+        <field name="arch" type="xml">
+            <list
+                string="Device Assets"
+                decoration-success="status == 'ready'"
+                decoration-muted="status == 'sold'"
+                multi_edit="1"
+            >
+
+                <header>
+
+                    <button
+                        name="action_cache_prefetch_demo"
+                        type="object"
+                        string="Run Cache Demo"
+                        class="btn-secondary"
+                        display="always"
+                    />
+
+                    <button
+                        name="action_increase_ready_prices"
+                        type="object"
+                        string="Increase Ready Prices 5%"
+                        class="btn-primary"
+                        display="always"
+                        confirm="Increase every Ready for Sale device price by 5%?"
+                    />
+
+                </header>
+
+                <field name="name"/>
+
+                <field name="serial_number"/>
+
+                <field
+                    name="device_type"
+                    optional="show"
+                />
+
+                <field
+                    name="status"
+                    widget="badge"
+                />
+
+                <field
+                    name="grade"
+                    optional="show"
+                />
+
+                <field
+                    name="cost_price"
+                    sum="Total Cost"
+                />
+
+                <field
+                    name="selling_price"
+                    sum="Total Selling Price"
+                />
+
+                <field
+                    name="margin"
+                    sum="Total Margin"
+                />
+
+                <field
+                    name="company_id"
+                    optional="show"
+                />
+
+                <field
+                    name="currency_id"
+                    column_invisible="True"
+                />
+
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Form View -->
+
+    <record id="device_asset_view_form" model="ir.ui.view">
+        <field name="name">device.asset.form</field>
+        <field name="model">device.asset</field>
+
+        <field name="arch" type="xml">
+            <form string="Device Asset">
+
+                <header>
+
+                    <button
+                        name="action_cache_prefetch_demo"
+                        type="object"
+                        string="Run Cache Demo"
+                        class="btn-secondary"
+                    />
+
+                    <button
+                        name="action_increase_ready_prices"
+                        type="object"
+                        string="Increase Ready Prices 5%"
+                        class="btn-primary"
+                        confirm="Increase every Ready for Sale device price by 5%?"
+                    />
+
+                    <field
+                        name="status"
+                        widget="statusbar"
+                        statusbar_visible="received,wiping,graded,ready,sold"
+                    />
+
+                </header>
+
+                <sheet>
+
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+
+                    <div class="oe_title">
+
+                        <label for="name"/>
+
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="e.g. Dell Latitude 5420"
+                            />
+                        </h1>
+
+                    </div>
+
+                    <group>
+
+                        <group string="Device Information">
+
+                            <field name="serial_number"/>
+
+                            <field name="device_type"/>
+
+                            <field name="grade"/>
+
+                            <field
+                                name="active"
+                                invisible="1"
+                            />
+
+                        </group>
+
+                        <group string="Financial Information">
+
+                            <field name="company_id"/>
+
+                            <field
+                                name="currency_id"
+                                invisible="1"
+                            />
+
+                            <field name="cost_price"/>
+
+                            <field name="selling_price"/>
+
+                            <field
+                                name="margin"
+                                readonly="1"
+                            />
+
+                        </group>
+
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Search View -->
+
+    <record id="device_asset_view_search" model="ir.ui.view">
+        <field name="name">device.asset.search</field>
+        <field name="model">device.asset</field>
+
+        <field name="arch" type="xml">
+            <search string="Search Device Assets">
+
+                <field name="name"/>
+
+                <field name="serial_number"/>
+
+                <field name="status"/>
+
+                <field name="grade"/>
+
+                <field name="company_id"/>
+
+                <separator/>
+
+                <filter
+                    name="received"
+                    string="Received"
+                    domain="[('status', '=', 'received')]"
+                />
+
+                <filter
+                    name="ready"
+                    string="Ready for Sale"
+                    domain="[('status', '=', 'ready')]"
+                />
+
+                <filter
+                    name="sold"
+                    string="Sold"
+                    domain="[('status', '=', 'sold')]"
+                />
+
+                <separator/>
+
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+
+                <group>
+
+    <filter
+        name="group_status"
+        string="Status"
+        context="{'group_by': 'status'}"
+    />
+
+    <filter
+        name="group_grade"
+        string="Grade"
+        context="{'group_by': 'grade'}"
+    />
+
+    <filter
+        name="group_company"
+        string="Company"
+        context="{'group_by': 'company_id'}"
+    />
+
+</group>
+
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Window Action -->
+
+    <record id="device_asset_action" model="ir.actions.act_window">
+        <field name="name">Device Assets</field>
+        <field name="res_model">device.asset</field>
+        <field name="view_mode">list,form</field>
+
+        <field
+            name="search_view_id"
+            ref="device_asset_view_search"
+        />
+
+        <field name="context">{}</field>
+
+        <field name="help" type="html">
+
+            <p class="o_view_nocontent_smiling_face">
+                Create your first device asset
+            </p>
+
+            <p>
+                Use this tutorial model to explore ORM cache,
+                prefetching and safe raw SQL.
+            </p>
+
+        </field>
+    </record>
+
+</odoo>

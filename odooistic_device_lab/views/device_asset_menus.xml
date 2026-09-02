@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <menuitem
+        id="device_lab_menu_root"
+        name="Device Lab"
+        sequence="10"
+        web_icon="odooistic_device_lab,static/description/icon.png"
+    />
+
+    <menuitem
+        id="device_asset_menu"
+        name="Device Assets"
+        parent="device_lab_menu_root"
+        action="device_asset_action"
+        sequence="10"
+    />
+
+</odoo>

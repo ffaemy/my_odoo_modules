@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo noupdate="1">
+
+    <record id="device_asset_001" model="device.asset">
+        <field name="name">Dell Latitude 5420</field>
+        <field name="serial_number">DL5420-0001</field>
+        <field name="device_type">laptop</field>
+        <field name="status">ready</field>
+        <field name="grade">a</field>
+        <field name="cost_price">280.00</field>
+        <field name="selling_price">425.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="device_asset_002" model="device.asset">
+        <field name="name">HP EliteBook 840 G8</field>
+        <field name="serial_number">HP840G8-0002</field>
+        <field name="device_type">laptop</field>
+        <field name="status">graded</field>
+        <field name="grade">b</field>
+        <field name="cost_price">240.00</field>
+        <field name="selling_price">360.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="device_asset_003" model="device.asset">
+        <field name="name">Lenovo ThinkPad T14</field>
+        <field name="serial_number">LNT14-0003</field>
+        <field name="device_type">laptop</field>
+        <field name="status">received</field>
+        <field name="grade">c</field>
+        <field name="cost_price">210.00</field>
+        <field name="selling_price">300.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="device_asset_004" model="device.asset">
+        <field name="name">Apple MacBook Pro 13</field>
+        <field name="serial_number">MBP13-0004</field>
+        <field name="device_type">laptop</field>
+        <field name="status">ready</field>
+        <field name="grade">a</field>
+        <field name="cost_price">520.00</field>
+        <field name="selling_price">725.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="device_asset_005" model="device.asset">
+        <field name="name">Dell OptiPlex 7090</field>
+        <field name="serial_number">DOP7090-0005</field>
+        <field name="device_type">desktop</field>
+        <field name="status">ready</field>
+        <field name="grade">b</field>
+        <field name="cost_price">230.00</field>
+        <field name="selling_price">345.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="device_asset_006" model="device.asset">
+        <field name="name">Apple iPhone 13</field>
+        <field name="serial_number">IP13-0006</field>
+        <field name="device_type">mobile</field>
+        <field name="status">sold</field>
+        <field name="grade">a</field>
+        <field name="cost_price">300.00</field>
+        <field name="selling_price">475.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="device_asset_007" model="device.asset">
+        <field name="name">Samsung Galaxy S22</field>
+        <field name="serial_number">SGS22-0007</field>
+        <field name="device_type">mobile</field>
+        <field name="status">graded</field>
+        <field name="grade">b</field>
+        <field name="cost_price">260.00</field>
+        <field name="selling_price">390.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="device_asset_008" model="device.asset">
+        <field name="name">Apple iPad Air</field>
+        <field name="serial_number">IPA-0008</field>
+        <field name="device_type">tablet</field>
+        <field name="status">ready</field>
+        <field name="grade">a</field>
+        <field name="cost_price">275.00</field>
+        <field name="selling_price">420.00</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+</odoo>
