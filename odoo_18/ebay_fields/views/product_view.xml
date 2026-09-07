@@ -1,0 +1,20 @@
+<odoo>
+
+    <record id="product_template_form_ebay" model="ir.ui.view">
+        <field name="name">product.template.form.ebay</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']" position="inside">
+                <group string="eBay">
+                    <field name="ebay_item_number"/>
+                    <field name="ebay_listing_status"/>
+                    <field name="ebay_price"/>
+                    <field name="ebay_stock"/>
+                    <field name="ebay_listing_url"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>
